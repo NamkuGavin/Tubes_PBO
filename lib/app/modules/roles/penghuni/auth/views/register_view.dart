@@ -1,21 +1,21 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tubes_pbo/app/common/constant/navigate.dart';
-import 'package:tubes_pbo/app/common/utils/shared_code.dart';
-import 'package:tubes_pbo/app/modules/roles/penghuni/auth/views/register_view.dart';
-import 'package:tubes_pbo/app/modules/roles/penghuni/navigation/navigation.dart';
-import 'package:tubes_pbo/app/widgets/custom_text_form_field.dart';
+import 'package:tubes_pbo/app/modules/roles/penghuni/auth/views/penghuni_form_view.dart';
 
 import '../../../../../common/constant/color_value.dart';
+import '../../../../../common/utils/shared_code.dart';
+import '../../../../../widgets/custom_text_form_field.dart';
 
-class PenghuniLoginView extends StatefulWidget {
-  const PenghuniLoginView({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<PenghuniLoginView> createState() => _PenghuniLoginViewState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _PenghuniLoginViewState extends State<PenghuniLoginView> {
+class _RegisterViewState extends State<RegisterView> {
+  final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -37,18 +37,27 @@ class _PenghuniLoginViewState extends State<PenghuniLoginView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Selamat Datang Penghuni",
+                      "Daftar Akun Penghuni",
                       style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 3),
                     Text(
-                      "Masukkan email dan password untuk masuk",
+                      "Masukkan form dibawah ini untuk mendaftar",
                       style: TextStyle(
                           fontSize: 12,
                           color: MyColor.neutral900,
                           fontWeight: FontWeight.w500),
                     ),
                     SizedBox(height: 25),
+                    CustomTextFormField(
+                      borderRadius: 8,
+                      validator: (value) => SharedCode().nameValidator(value),
+                      hintText: "Masukkan nama lengkap",
+                      controller: _usernameController,
+                      maxLines: 1,
+                      textInputType: TextInputType.name,
+                    ),
+                    SizedBox(height: 12),
                     CustomTextFormField(
                       borderRadius: 8,
                       validator: (value) => SharedCode().emailValidator(value),
@@ -78,26 +87,25 @@ class _PenghuniLoginViewState extends State<PenghuniLoginView> {
                     ),
                     SizedBox(height: 50),
                     ElevatedButton(
-                        onPressed: () => Navigate.navigatorPush(context, BuildNavigation()),
+                        onPressed: () => Navigate.navigatorPush(context, PenghuniFormView()),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyColor.mainBlue,
                             minimumSize: Size(double.infinity, 0),
                             padding: EdgeInsets.symmetric(vertical: 12),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(8)))),
-                        child: Text("Masuk",
+                        child: Text("Daftar",
                             style: TextStyle(color: Colors.white, fontSize: 15))),
                     SizedBox(height: 50),
                     Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
-                              text: "Belum punya akun? ", style: TextStyle(fontSize: 12)),
+                              text: "Sudah punya akun? ", style: TextStyle(fontSize: 12)),
                           TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap =
-                                  () => Navigate.navigatorPush(context, RegisterView()),
-                            text: "Daftar",
+                              ..onTap = () => Navigate.navigatorPop(context),
+                            text: "Masuk",
                             style: TextStyle(fontSize: 12, color: MyColor.mainBlue),
                           ),
                         ],
