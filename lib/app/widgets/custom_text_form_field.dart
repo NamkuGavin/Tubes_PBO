@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../common/constant/color_value.dart';
 
@@ -13,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final double borderRadius;
   final int maxLines;
+  final List<TextInputFormatter> inputFormat;
   final Function(String?)? onChanged;
 
   const CustomTextFormField(
@@ -27,7 +29,8 @@ class CustomTextFormField extends StatelessWidget {
       this.enableSuggestions = false,
       this.suffixIcon,
       required this.maxLines,
-      this.onChanged});
+      this.onChanged,
+      required this.inputFormat});
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +47,8 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText,
       autocorrect: autocorrect,
       enableSuggestions: enableSuggestions,
+
+      inputFormatters: inputFormat,
       style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
       decoration: InputDecoration(
         hintText: hintText,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../common/utils/shared_code.dart';
 import 'custom_text_form_field.dart';
@@ -8,6 +9,8 @@ class CustomFormField extends StatelessWidget {
   final String label;
   final String hintText;
   final TextInputType inputType;
+  final int maxLines;
+  final List<TextInputFormatter> inputFormat;
   final String? Function(String?)? validate;
   const CustomFormField(
       {super.key,
@@ -15,7 +18,9 @@ class CustomFormField extends StatelessWidget {
       required this.label,
       required this.hintText,
       required this.inputType,
-      this.validate});
+      this.maxLines = 1,
+      this.validate,
+      required this.inputFormat});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +35,9 @@ class CustomFormField extends StatelessWidget {
           validator: validate,
           hintText: hintText,
           controller: controller,
-          maxLines: 1,
+          maxLines: maxLines,
           textInputType: inputType,
+          inputFormat: inputFormat,
         ),
       ],
     );

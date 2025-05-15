@@ -21,4 +21,6 @@ class IconAssets {
 class ImageAssets {
   static const String pemilikLogo = "assets/images/pemilik.png";
   static const String penghuniLogo = "assets/images/penghuni.png";
+  static const String stnk = "assets/images/stnk.jpeg";
+  static const String ktp = "assets/images/ktp.jpg";
 }

@@ -101,6 +101,7 @@ class _PenghuniFormViewState extends State<PenghuniFormView> {
                   hintText: "Masukkan Umur",
                   inputType: TextInputType.number,
                   validate: (value) => SharedCode().emptyValidator(value),
+                  inputFormat: [],
                 ),
                 SizedBox(height: 20),
                 CustomFormField(
@@ -109,6 +110,7 @@ class _PenghuniFormViewState extends State<PenghuniFormView> {
                   hintText: "Masukkan pekerjaan di bidang",
                   inputType: TextInputType.text,
                   validate: (value) => SharedCode().emptyValidator(value),
+                  inputFormat: [],
                 ),
                 SizedBox(height: 20),
                 CustomFormField(
@@ -117,6 +119,7 @@ class _PenghuniFormViewState extends State<PenghuniFormView> {
                   hintText: "Masukkan nomor",
                   inputType: TextInputType.number,
                   validate: (value) => SharedCode().emptyValidator(value),
+                  inputFormat: [],
                 ),
                 SizedBox(height: 20),
                 CustomFormField(
@@ -125,6 +128,7 @@ class _PenghuniFormViewState extends State<PenghuniFormView> {
                   hintText: "Masukkan nomor",
                   inputType: TextInputType.number,
                   validate: (value) => SharedCode().emptyValidator(value),
+                  inputFormat: [],
                 ),
                 SizedBox(height: 20),
                 Text("Bawa kendaraan"),
@@ -147,6 +151,7 @@ class _PenghuniFormViewState extends State<PenghuniFormView> {
                   hintText: "Masukkan nomor",
                   inputType: TextInputType.number,
                   validate: (value) => SharedCode().emptyValidator(value),
+                  inputFormat: [],
                 ),
                 SizedBox(height: 20),
                 Text("Dokumen persyaratan kost"),

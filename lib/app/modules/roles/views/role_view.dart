@@ -4,7 +4,7 @@ import '../../../common/constant/assets.dart';
 import '../../../common/constant/color_value.dart';
 import '../../../common/constant/navigate.dart';
 import '../../../widgets/roles/roles_card.dart';
-import '../penghuni/auth/views/login_view.dart';
+import '../pemilik/auth/views/login_view.dart';
 
 class RoleView extends StatelessWidget {
   const RoleView({super.key});
@@ -31,14 +31,14 @@ class RoleView extends StatelessWidget {
               ),
               SizedBox(height: 30),
               RolesCard(
-                image: ImageAssets.penghuniLogo,
-                text: "Penghuni",
-                onTap: () => Navigate.navigatorPush(context, PenghuniLoginView()),
+                image: ImageAssets.pemilikLogo,
+                text: "Pemilik",
+                onTap: () => Navigate.navigatorPush(context, PemilikLoginView()),
               ),
               SizedBox(height: 10),
               RolesCard(
-                image: ImageAssets.pemilikLogo,
-                text: "Pemilik",
+                image: ImageAssets.penghuniLogo,
+                text: "Penghuni",
                 onTap: () {},
               ),
             ],
