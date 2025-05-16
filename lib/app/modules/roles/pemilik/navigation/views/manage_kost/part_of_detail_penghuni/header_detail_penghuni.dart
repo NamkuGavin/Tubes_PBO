@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost/edit_kost.dart';
 
 import '../../../../../../../common/constant/assets.dart';
 import '../../../../../../../common/constant/color_value.dart';
-import '../../../../../../../model/dummy/kost_model.dart';
+import '../../../../../../../model/dummy/penghuni_model.dart';
 
-class HeaderDetail extends StatelessWidget {
-  final KostModel data;
-  const HeaderDetail({super.key, required this.data});
+class HeaderDetailPenghuni extends StatelessWidget {
+  final PenghuniModel data;
+  const HeaderDetailPenghuni({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class HeaderDetail extends StatelessWidget {
         children: [
           Row(
             children: [
-              SvgPicture.asset(IconAssets.kost, color: MyColor.mainBlue, height: 35),
+              SvgPicture.asset(IconAssets.person2, color: MyColor.mainBlue, height: 35),
               SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +26,7 @@ class HeaderDetail extends StatelessWidget {
                   Text(data.nama,
                       style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                   Text(
-                    data.jenis,
+                    data.jenisKelamin,
                     style: TextStyle(
                         fontSize: 15, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
                   ),
@@ -35,16 +34,7 @@ class HeaderDetail extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            children: [
-              GestureDetector(
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => EditKost(data: data))),
-                  child: SvgPicture.asset(IconAssets.edit, height: 30)),
-              SizedBox(width: 15),
-              SvgPicture.asset(IconAssets.delete, color: Colors.red, height: 30),
-            ],
-          )
+          SvgPicture.asset(IconAssets.delete, color: Colors.red, height: 30)
         ],
       ),
     );
