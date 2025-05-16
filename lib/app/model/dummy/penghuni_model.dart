@@ -1,10 +1,18 @@
-class RiwayatPembayaran {
-  String date;
-  int currency;
-  bool isLunas;
-  String kostId;
+class RiwayatTransaksi {
+  final int nominal;
+  final String tanggal;
 
-  RiwayatPembayaran(this.date, this.currency, this.isLunas, this.kostId);
+  RiwayatTransaksi(this.nominal, this.tanggal);
+}
+
+class RiwayatPembayaran {
+  final String date;
+  final int currency;
+  final bool isLunas;
+  final String kostId;
+  final List<RiwayatTransaksi> riwayatTransaksi;
+
+  RiwayatPembayaran(this.date, this.currency, this.isLunas, this.kostId, this.riwayatTransaksi);
 }
 
 class PenghuniModel {
