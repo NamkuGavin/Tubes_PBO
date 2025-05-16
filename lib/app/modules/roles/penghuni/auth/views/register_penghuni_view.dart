@@ -5,17 +5,18 @@ import '../../../../../common/constant/color_value.dart';
 import '../../../../../common/constant/navigate.dart';
 import '../../../../../common/utils/shared_code.dart';
 import '../../../../../widgets/custom_text_form_field.dart';
-import '../../navigation/navigation.dart';
-import 'register_view.dart';
+import '../../navigation/navigation_penghuni.dart';
+import 'penghuni_form_view.dart';
 
-class PemilikLoginView extends StatefulWidget {
-  const PemilikLoginView({super.key});
+class RegisterPenghuniView extends StatefulWidget {
+  const RegisterPenghuniView({super.key});
 
   @override
-  State<PemilikLoginView> createState() => _PemilikLoginViewState();
+  State<RegisterPenghuniView> createState() => _RegisterPenghuniViewState();
 }
 
-class _PemilikLoginViewState extends State<PemilikLoginView> {
+class _RegisterPenghuniViewState extends State<RegisterPenghuniView> {
+  final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -37,12 +38,12 @@ class _PemilikLoginViewState extends State<PemilikLoginView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Selamat Datang Pemilik",
+                      "Daftar Akun Penghuni",
                       style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 3),
                     Text(
-                      "Masukkan email dan password untuk masuk",
+                      "Masukkan form dibawah ini untuk mendaftar",
                       style: TextStyle(
                           fontSize: 12,
                           color: MyColor.neutral900,
@@ -51,11 +52,22 @@ class _PemilikLoginViewState extends State<PemilikLoginView> {
                     SizedBox(height: 25),
                     CustomTextFormField(
                       borderRadius: 8,
+                      validator: (value) => SharedCode().nameValidator(value),
+                      hintText: "Masukkan nama lengkap",
+                      controller: _usernameController,
+                      maxLines: 1,
+                      textInputType: TextInputType.name,
+                      inputFormat: [],
+                    ),
+                    SizedBox(height: 12),
+                    CustomTextFormField(
+                      borderRadius: 8,
                       validator: (value) => SharedCode().emailValidator(value),
                       hintText: "Masukkan email",
                       controller: _emailController,
                       maxLines: 1,
-                      textInputType: TextInputType.emailAddress, inputFormat: [],
+                      textInputType: TextInputType.emailAddress,
+                      inputFormat: [],
                     ),
                     SizedBox(height: 12),
                     CustomTextFormField(
@@ -65,7 +77,8 @@ class _PemilikLoginViewState extends State<PemilikLoginView> {
                       hintText: "Masukkan password",
                       controller: _passController,
                       maxLines: 1,
-                      textInputType: TextInputType.visiblePassword,inputFormat: [],
+                      textInputType: TextInputType.visiblePassword,
+                      inputFormat: [],
                       suffixIcon: IconButton(
                           onPressed: () {
                             setState(() {
@@ -78,26 +91,25 @@ class _PemilikLoginViewState extends State<PemilikLoginView> {
                     ),
                     SizedBox(height: 50),
                     ElevatedButton(
-                        onPressed: () => Navigate.navigatorPush(context, BuildPemilikNavigation()),
+                        onPressed: () => Navigate.navigatorPush(context, PenghuniFormView()),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyColor.mainBlue,
                             minimumSize: Size(double.infinity, 0),
                             padding: EdgeInsets.symmetric(vertical: 12),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(8)))),
-                        child: Text("Masuk",
+                        child: Text("Daftar",
                             style: TextStyle(color: Colors.white, fontSize: 15))),
                     SizedBox(height: 50),
                     Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
-                              text: "Belum punya akun? ", style: TextStyle(fontSize: 12)),
+                              text: "Sudah punya akun? ", style: TextStyle(fontSize: 12)),
                           TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap =
-                                  () => Navigate.navigatorPush(context, RegisterView()),
-                            text: "Daftar",
+                              ..onTap = () => Navigate.navigatorPop(context),
+                            text: "Masuk",
                             style: TextStyle(fontSize: 12, color: MyColor.mainBlue),
                           ),
                         ],

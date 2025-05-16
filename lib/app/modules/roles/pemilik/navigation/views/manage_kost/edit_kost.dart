@@ -7,7 +7,7 @@ import '../../../../../../common/utils/shared_code.dart';
 import '../../../../../../widgets/custom_form_field.dart';
 
 class EditKost extends StatefulWidget {
-  final KostModel data;
+  final KostPenghuniModel data;
   const EditKost({super.key, required this.data});
 
   @override

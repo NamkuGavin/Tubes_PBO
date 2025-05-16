@@ -90,7 +90,7 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                     SizedBox(height: 50),
                     ElevatedButton(
-                        onPressed: () => Navigate.navigatorPush(context, BuildNavigation()),
+                        onPressed: () => Navigate.navigatorPush(context, BuildPemilikNavigation()),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyColor.mainBlue,
                             minimumSize: Size(double.infinity, 0),

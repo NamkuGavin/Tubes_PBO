@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tubes_pbo/app/modules/roles/penghuni/auth/views/login_penghuni_view.dart';
 
 import '../../../common/constant/assets.dart';
 import '../../../common/constant/color_value.dart';
@@ -39,7 +40,7 @@ class RoleView extends StatelessWidget {
               RolesCard(
                 image: ImageAssets.penghuniLogo,
                 text: "Penghuni",
-                onTap: () {},
+                onTap: () => Navigate.navigatorPush(context, PenghuniLoginView()),
               ),
             ],
           ),

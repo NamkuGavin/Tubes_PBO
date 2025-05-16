@@ -5,9 +5,9 @@ import '../../../../../../../common/constant/color_value.dart';
 import '../../../../../../../common/utils/shared_code.dart';
 import '../../../../../../../widgets/custom_title_subtitle.dart';
 
-class BodyDetail extends StatelessWidget {
-  final KostPenghuniModel data;
-  const BodyDetail({super.key, required this.data});
+class BodyDetailKostPenghuni extends StatelessWidget {
+  final KostModel data;
+  const BodyDetailKostPenghuni({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -30,27 +30,6 @@ class BodyDetail extends StatelessWidget {
                 titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                 subtitleStyle: TextStyle(
                     fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
-          ),
-          Divider(color: Color(0xFFBABABA), thickness: 1),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(15, 5, 30, 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomTitleSubtitle(
-                    title: "Penghuni Aktif",
-                    subtitle: "${data.dataPenghuni.length} Orang",
-                    titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                    subtitleStyle: TextStyle(
-                        fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
-                CustomTitleSubtitle(
-                    title: "Sisa kamar",
-                    subtitle: "${data.jumKamar - data.dataPenghuni.length} Kamar",
-                    titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                    subtitleStyle: TextStyle(
-                        fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
-              ],
-            ),
           ),
           Divider(color: Color(0xFFBABABA), thickness: 1),
           Padding(

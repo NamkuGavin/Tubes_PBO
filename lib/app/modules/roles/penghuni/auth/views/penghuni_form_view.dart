@@ -146,7 +146,7 @@ class _PenghuniFormViewState extends State<PenghuniFormView> {
                 ),
                 SizedBox(height: 20),
                 CustomFormField(
-                  controller: _noDarurat,
+                  controller: _noPlat,
                   label: "No. Plat Kendaraan",
                   hintText: "Masukkan nomor",
                   inputType: TextInputType.number,

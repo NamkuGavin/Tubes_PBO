@@ -9,7 +9,7 @@ import '../../../../../../../common/constant/color_value.dart';
 import '../../../../../../../widgets/custom_item_tile.dart';
 
 class RiwayatDetail extends StatelessWidget {
-  final KostModel data;
+  final KostPenghuniModel data;
   const RiwayatDetail({super.key, required this.data});
 
   @override

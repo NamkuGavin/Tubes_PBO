@@ -5,17 +5,18 @@ import '../../../../../common/constant/color_value.dart';
 import '../../../../../common/constant/navigate.dart';
 import '../../../../../common/utils/shared_code.dart';
 import '../../../../../widgets/custom_text_form_field.dart';
-import '../../navigation/navigation.dart';
-import 'register_view.dart';
+import '../../../pemilik/navigation/navigation.dart';
+import '../../navigation/navigation_penghuni.dart';
+import 'register_penghuni_view.dart';
 
-class PemilikLoginView extends StatefulWidget {
-  const PemilikLoginView({super.key});
+class PenghuniLoginView extends StatefulWidget {
+  const PenghuniLoginView({super.key});
 
   @override
-  State<PemilikLoginView> createState() => _PemilikLoginViewState();
+  State<PenghuniLoginView> createState() => _PenghuniLoginViewState();
 }
 
-class _PemilikLoginViewState extends State<PemilikLoginView> {
+class _PenghuniLoginViewState extends State<PenghuniLoginView> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -37,7 +38,7 @@ class _PemilikLoginViewState extends State<PemilikLoginView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Selamat Datang Pemilik",
+                      "Selamat Datang Penghuni",
                       style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 3),
@@ -55,7 +56,8 @@ class _PemilikLoginViewState extends State<PemilikLoginView> {
                       hintText: "Masukkan email",
                       controller: _emailController,
                       maxLines: 1,
-                      textInputType: TextInputType.emailAddress, inputFormat: [],
+                      textInputType: TextInputType.emailAddress,
+                      inputFormat: [],
                     ),
                     SizedBox(height: 12),
                     CustomTextFormField(
@@ -65,7 +67,8 @@ class _PemilikLoginViewState extends State<PemilikLoginView> {
                       hintText: "Masukkan password",
                       controller: _passController,
                       maxLines: 1,
-                      textInputType: TextInputType.visiblePassword,inputFormat: [],
+                      textInputType: TextInputType.visiblePassword,
+                      inputFormat: [],
                       suffixIcon: IconButton(
                           onPressed: () {
                             setState(() {
@@ -78,7 +81,8 @@ class _PemilikLoginViewState extends State<PemilikLoginView> {
                     ),
                     SizedBox(height: 50),
                     ElevatedButton(
-                        onPressed: () => Navigate.navigatorPush(context, BuildPemilikNavigation()),
+                        onPressed: () =>
+                            Navigate.navigatorPush(context, BuildPenghuniNavigation()),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyColor.mainBlue,
                             minimumSize: Size(double.infinity, 0),
@@ -95,8 +99,8 @@ class _PemilikLoginViewState extends State<PemilikLoginView> {
                               text: "Belum punya akun? ", style: TextStyle(fontSize: 12)),
                           TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap =
-                                  () => Navigate.navigatorPush(context, RegisterView()),
+                              ..onTap = () =>
+                                  Navigate.navigatorPush(context, RegisterPenghuniView()),
                             text: "Daftar",
                             style: TextStyle(fontSize: 12, color: MyColor.mainBlue),
                           ),

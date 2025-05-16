@@ -7,7 +7,7 @@ import '../../../../../../../common/constant/color_value.dart';
 import '../../../../../../../model/dummy/kost_model.dart';
 
 class HeaderDetail extends StatelessWidget {
-  final KostModel data;
+  final KostPenghuniModel data;
   const HeaderDetail({super.key, required this.data});
 
   @override

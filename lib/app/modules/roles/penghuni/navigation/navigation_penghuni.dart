@@ -3,25 +3,25 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../common/constant/assets.dart';
 import '../../../../common/constant/color_value.dart';
-import 'views/home_view.dart';
-import 'views/manage_kost_view.dart';
-import 'views/profile_view.dart';
+import 'views/penghuni_home_view.dart';
+import 'views/penghuni_kost_view.dart';
+import 'views/penghuni_profile_view.dart';
 
-class BuildPemilikNavigation extends StatefulWidget {
-  const BuildPemilikNavigation({super.key});
+class BuildPenghuniNavigation extends StatefulWidget {
+  const BuildPenghuniNavigation({super.key});
 
   @override
-  State<BuildPemilikNavigation> createState() => _BuildPemilikNavigationState();
+  State<BuildPenghuniNavigation> createState() => _BuildPenghuniNavigationState();
 }
 
-class _BuildPemilikNavigationState extends State<BuildPemilikNavigation> {
+class _BuildPenghuniNavigationState extends State<BuildPenghuniNavigation> {
   int _currentIndex = 0;
   final List _pageStack = [];
 
   final _tabs = [
-    const HomeView(),
-    const ManageKostView(),
-    const ProfileView(),
+    const PenghuniHomeView(),
+    const PenghuniKostView(),
+    const PenghuniProfileView(),
   ];
 
   void _pagePush(int i) {
@@ -77,7 +77,7 @@ class _BuildPemilikNavigationState extends State<BuildPemilikNavigation> {
               icon: SvgPicture.asset(IconAssets.kost2, height: 30),
               activeIcon:
                   SvgPicture.asset(IconAssets.kost2, height: 30, color: MyColor.mainBlue),
-              label: 'Manage Kost',
+              label: 'Kost',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(IconAssets.person, height: 30),

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:tubes_pbo/app/common/utils/shared_code.dart';
+import 'package:tubes_pbo/app/model/dummy/kost_model.dart';
 
 import '../../../../../../../common/constant/color_value.dart';
-import '../../../../../../../model/dummy/kost_model.dart';
+import '../../../../../../../common/utils/shared_code.dart';
 import '../../../../../../../model/dummy/penghuni_model.dart';
 import '../../../../../../../widgets/custom_title_subtitle.dart';
 
-class BodyDetailTransaksiPenghuni extends StatelessWidget {
+class BodyDetailTransaksi extends StatelessWidget {
   final RiwayatPembayaran data;
-  final KostPenghuniModel dataKost;
-  const BodyDetailTransaksiPenghuni({super.key, required this.data, required this.dataKost});
+  final KostModel dataKost;
+  const BodyDetailTransaksi({super.key, required this.data, required this.dataKost});
 
   @override
   Widget build(BuildContext context) {

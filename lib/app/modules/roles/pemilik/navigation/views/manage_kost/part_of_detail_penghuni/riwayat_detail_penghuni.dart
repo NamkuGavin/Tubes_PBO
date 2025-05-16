@@ -24,7 +24,7 @@ class RiwayatDetailPenghuni extends StatelessWidget {
         SizedBox(height: 12),
         ...sortedPembayaran.map((pembayaran) {
           final matchedKost =
-              AllDummyData.dataKost.firstWhere((k) => k.id == pembayaran.kostId);
+              AllDummyData.dataKostPenghuni.firstWhere((k) => k.id == pembayaran.kostId);
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
             child: GestureDetector(

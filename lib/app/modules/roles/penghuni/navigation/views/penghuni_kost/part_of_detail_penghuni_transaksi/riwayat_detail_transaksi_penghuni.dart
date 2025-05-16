@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tubes_pbo/app/modules/roles/penghuni/navigation/views/penghuni_kost/add_pembayaran_kost.dart';
 
 import '../../../../../../../common/constant/assets.dart';
 import '../../../../../../../common/constant/color_value.dart';
 import '../../../../../../../common/utils/shared_code.dart';
 import '../../../../../../../model/dummy/kost_model.dart';
 import '../../../../../../../model/dummy/penghuni_model.dart';
-import '../../../../../../../widgets/custom_item_tile.dart';
 
-class RiwayatDetailTransaksiPenghuni extends StatelessWidget {
+class RiwayatDetailTransaksi extends StatelessWidget {
   final RiwayatPembayaran data;
-  final KostPenghuniModel dataKost;
-  const RiwayatDetailTransaksiPenghuni(
-      {super.key, required this.data, required this.dataKost});
+  final KostModel dataKost;
+  const RiwayatDetailTransaksi({super.key, required this.data, required this.dataKost});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Pembayaran", style: TextStyle(fontWeight: FontWeight.bold)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Riwayat", style: TextStyle(fontWeight: FontWeight.bold)),
+            GestureDetector(
+              onTap: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AddPembayaranKost())),
+              child: Text("+ Tambah Pembayaran",
+                  style: TextStyle(fontWeight: FontWeight.bold, color: MyColor.mainBlue)),
+            )
+          ],
+        ),
         SizedBox(height: 12),
         ListView.builder(
           shrinkWrap: true,

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tubes_pbo/app/common/utils/shared_code.dart';
 import 'package:tubes_pbo/app/model/dummy/kost_model.dart';
-import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost/detail_kost.dart';
 
 import '../common/constant/assets.dart';
 import '../common/constant/color_value.dart';
+import '../modules/roles/penghuni/navigation/views/penghuni_kost/detail_penghuni_kost.dart';
 
-class CustomItemKost extends StatelessWidget {
-  final KostPenghuniModel data;
-  const CustomItemKost({super.key, required this.data});
+class CustomItemKostPenghuni extends StatelessWidget {
+  final KostModel dataKost;
+  const CustomItemKostPenghuni({super.key, required this.dataKost});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DetailKostPenghuni(data: data))),
+          context, MaterialPageRoute(builder: (context) => DetailKost(data: dataKost))),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
         decoration: BoxDecoration(
@@ -36,10 +37,10 @@ class CustomItemKost extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(data.nama,
+                          Text(dataKost.nama,
                               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
                           Text(
-                            data.jenis,
+                            dataKost.jenis,
                             style: TextStyle(
                                 fontSize: 13,
                                 color: Color(0xFF8C8C8C),
@@ -62,10 +63,10 @@ class CustomItemKost extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Penghuni aktif",
+                      Text("Harga",
                           style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
                       Text(
-                        "${data.dataPenghuni.length} orang",
+                        "${SharedCode().convertToIdr(dataKost.harga, 0)} / Tahun",
                         style: TextStyle(
                             fontSize: 13,
                             color: MyColor.mainBlue,
@@ -76,13 +77,19 @@ class CustomItemKost extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Sisa Kamar",
+                      Text("Pembayaran",
                           style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
                       Text(
-                        "${data.jumKamar - data.dataPenghuni.length} Kamar",
+                        dataKost.dataPembayaran.where((e) => e.isLunas == false).isEmpty
+                            ? "SEMUA LUNAS"
+                            : "${dataKost.dataPembayaran.where((e) => e.isLunas == false).length} BELUM LUNAS",
                         style: TextStyle(
                             fontSize: 13,
-                            color: MyColor.mainBlue,
+                            color: dataKost.dataPembayaran
+                                    .where((e) => e.isLunas == false)
+                                    .isEmpty
+                                ? MyColor.mainGreen
+                                : MyColor.mainRed,
                             fontWeight: FontWeight.bold),
                       ),
                     ],

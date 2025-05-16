@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:tubes_pbo/app/model/dummy/kost_model.dart';
-import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost/part_of_detail_transaksi/header_detail_transaksi_penghuni.dart';
 
 import '../../../../../../common/constant/color_value.dart';
 import '../../../../../../model/dummy/penghuni_model.dart';
-import 'part_of_detail_transaksi/body_detail_transaksi_penghuni.dart';
-import 'part_of_detail_transaksi/riwayat_detail_transaksi_penghuni.dart';
+import 'part_of_detail_penghuni_transaksi/body_detail_transaksi_penghuni.dart';
+import 'part_of_detail_penghuni_transaksi/header_detail_transaksi_penghuni.dart';
+import 'part_of_detail_penghuni_transaksi/riwayat_detail_transaksi_penghuni.dart';
 
-class DetailPembayaran extends StatelessWidget {
+class DetailTransaksi extends StatelessWidget {
   final RiwayatPembayaran data;
-  final KostPenghuniModel dataKost;
-  const DetailPembayaran({super.key, required this.dataKost, required this.data});
+  final KostModel dataKost;
+  const DetailTransaksi({super.key, required this.dataKost, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,9 @@ class DetailPembayaran extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: Column(
             children: [
-              HeaderDetailTransaksiPenghuni(data: data, dataKost: dataKost),
-              BodyDetailTransaksiPenghuni(data: data, dataKost: dataKost),
-              RiwayatDetailTransaksiPenghuni(data: data, dataKost: dataKost),
+              HeaderDetailTransaksi(data: data, dataKost: dataKost),
+              BodyDetailTransaksi(data: data, dataKost: dataKost),
+              RiwayatDetailTransaksi(data: data, dataKost: dataKost),
             ],
           ),
         ),

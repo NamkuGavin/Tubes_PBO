@@ -10,7 +10,7 @@ class ManageKostView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final kost = AllDummyData.dataKost;
+    final kost = AllDummyData.dataKostPenghuni;
 
     return Scaffold(
       backgroundColor: MyColor.neutral500,

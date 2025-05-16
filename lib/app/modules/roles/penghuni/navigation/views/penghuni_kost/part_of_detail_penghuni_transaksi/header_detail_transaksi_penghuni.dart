@@ -6,11 +6,10 @@ import '../../../../../../../common/constant/color_value.dart';
 import '../../../../../../../model/dummy/kost_model.dart';
 import '../../../../../../../model/dummy/penghuni_model.dart';
 
-class HeaderDetailTransaksiPenghuni extends StatelessWidget {
+class HeaderDetailTransaksi extends StatelessWidget {
   final RiwayatPembayaran data;
-  final KostPenghuniModel dataKost;
-  const HeaderDetailTransaksiPenghuni(
-      {super.key, required this.data, required this.dataKost});
+  final KostModel dataKost;
+  const HeaderDetailTransaksi({super.key, required this.data, required this.dataKost});
 
   @override
   Widget build(BuildContext context) {
