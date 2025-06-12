@@ -3,21 +3,22 @@ import 'package:tubes_pbo/app/model/dummy/kost_model.dart';
 
 import '../../../../../../../common/constant/color_value.dart';
 import '../../../../../../../common/utils/shared_code.dart';
+import '../../../../../../../model/api/kost_model.dart';
 import '../../../../../../../widgets/custom_title_subtitle.dart';
 
 class BodyDetail extends StatelessWidget {
-  final KostPenghuniModel data;
+  final DataKost data;
   const BodyDetail({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
+    final kamarTerisi = data.dataKamar.where((kamar) => kamar.status == 'Terisi').length;
+    final sisaKamar = data.dataKamar.where((kamar) => kamar.status == 'Kosong').length;
+
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(bottom: 30),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Color(0xFFBABABA))),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xFFBABABA))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -28,8 +29,7 @@ class BodyDetail extends StatelessWidget {
                 title: "Harga",
                 subtitle: "${SharedCode().convertToIdr(data.harga, 0)} / tahun",
                 titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                subtitleStyle: TextStyle(
-                    fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
+                subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
           ),
           Divider(color: Color(0xFFBABABA), thickness: 1),
           Padding(
@@ -39,16 +39,14 @@ class BodyDetail extends StatelessWidget {
               children: [
                 CustomTitleSubtitle(
                     title: "Penghuni Aktif",
-                    subtitle: "${data.dataPenghuni.length} Orang",
+                    subtitle: "$kamarTerisi Orang",
                     titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                    subtitleStyle: TextStyle(
-                        fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
+                    subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
                 CustomTitleSubtitle(
                     title: "Sisa kamar",
-                    subtitle: "${data.jumKamar - data.dataPenghuni.length} Kamar",
+                    subtitle: "$sisaKamar Kamar",
                     titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                    subtitleStyle: TextStyle(
-                        fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
+                    subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
               ],
             ),
           ),
@@ -57,7 +55,7 @@ class BodyDetail extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(15, 5, 30, 5),
             child: CustomTitleSubtitle(
                 title: "Lokasi",
-                subtitle: data.lokasi,
+                subtitle: data.alamat,
                 titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                 subtitleStyle: TextStyle(fontSize: 13, color: Color(0xFF8B8B8B))),
           ),

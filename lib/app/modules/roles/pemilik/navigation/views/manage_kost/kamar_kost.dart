@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../common/constant/color_value.dart';
+import '../../../../../../model/api/kost_model.dart';
 import '../../../../../../model/dummy/kost_model.dart';
 
 class KamarKost extends StatefulWidget {
-  final KostPenghuniModel data;
+  final DataKost data;
   const KamarKost({super.key, required this.data});
 
   @override
@@ -12,19 +13,37 @@ class KamarKost extends StatefulWidget {
 }
 
 class _KamarKostState extends State<KamarKost> {
-  bool _expanded = false;
+  late List<bool> _expandedList;
+
+  @override
+  void initState() {
+    super.initState();
+    // Set awal: semua tidak di-expand
+    _expandedList = List.filled(widget.data.dataKamar.length, false);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColor.neutral500,
-      appBar: AppBar(backgroundColor: Colors.transparent, title: Text("Kamar ${widget.data.nama}", style: TextStyle(fontWeight: FontWeight.w600))),
+      appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: Text(
+            "Kamar ${widget.data.namaKos}",
+            style: TextStyle(fontWeight: FontWeight.w600),
+          )),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: Column(
-            children: [
-              Container(
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: widget.data.dataKamar.length,
+            itemBuilder: (context, index) {
+              var dataKamar = widget.data.dataKamar[index];
+              final isExpanded = _expandedList[index];
+
+              return Container(
+                margin: const EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
                   color: Color(0xffEFEFEF),
                   borderRadius: BorderRadius.circular(12),
@@ -34,7 +53,7 @@ class _KamarKostState extends State<KamarKost> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          _expanded = !_expanded;
+                          _expandedList[index] = !_expandedList[index];
                         });
                       },
                       child: ListTile(
@@ -42,28 +61,28 @@ class _KamarKostState extends State<KamarKost> {
                         leading: Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: MyColor.mainRed,
+                            color: dataKamar.status == "Kosong" ? MyColor.mainRed : MyColor.mainGreen,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(Icons.meeting_room, color: Colors.white),
                         ),
-                        title: Text('Kamar 6'),
+                        title: Text('Kamar ${dataKamar.noKamar}'),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'KOSONG',
-                              style: TextStyle(color: Colors.red),
+                              dataKamar.status.toUpperCase(),
+                              style: TextStyle(color: dataKamar.status == "Kosong" ? MyColor.mainRed : MyColor.mainGreen),
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 12),
-                              child: Icon(_expanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down),
+                              child: Icon(isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    if (_expanded)
+                    if (isExpanded)
                       Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -72,18 +91,19 @@ class _KamarKostState extends State<KamarKost> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(16),
                         child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: MyColor.mainBlue,
-                                minimumSize: Size(double.infinity, 0),
-                                padding: EdgeInsets.symmetric(vertical: 12),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
-                            child: Text("+ Tambah Penghuni", style: TextStyle(color: Colors.white, fontSize: 15))),
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: MyColor.mainBlue,
+                              minimumSize: Size(double.infinity, 0),
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
+                          child: Text("+ Tambah Penghuni", style: TextStyle(color: Colors.white, fontSize: 15)),
+                        ),
                       ),
                   ],
                 ),
-              ),
-            ],
+              );
+            },
           ),
         ),
       ),

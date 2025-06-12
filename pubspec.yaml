@@ -38,6 +38,7 @@ dependencies:
   intl: ^0.20.2
   dotted_border: ^2.1.0
   file_picker: ^10.1.7
+  http: ^1.4.0
 
 dev_dependencies:
   flutter_test:

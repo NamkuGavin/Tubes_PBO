@@ -4,10 +4,11 @@ import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost
 
 import '../../../../../../../common/constant/assets.dart';
 import '../../../../../../../common/constant/color_value.dart';
+import '../../../../../../../model/api/kost_model.dart';
 import '../../../../../../../model/dummy/kost_model.dart';
 
 class HeaderDetail extends StatelessWidget {
-  final KostPenghuniModel data;
+  final DataKost data;
   const HeaderDetail({super.key, required this.data});
 
   @override
@@ -24,12 +25,10 @@ class HeaderDetail extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(data.nama,
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                  Text(data.namaKos, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                   Text(
-                    data.jenis,
-                    style: TextStyle(
-                        fontSize: 15, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
+                    data.tipeKos,
+                    style: TextStyle(fontSize: 15, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
@@ -38,8 +37,9 @@ class HeaderDetail extends StatelessWidget {
           Row(
             children: [
               GestureDetector(
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => EditKost(data: data))),
+                  onTap: () {},
+                  // onTap: () => Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => EditKost(data: data))),
                   child: SvgPicture.asset(IconAssets.edit, height: 30)),
               SizedBox(width: 15),
               SvgPicture.asset(IconAssets.delete, color: Colors.red, height: 30),

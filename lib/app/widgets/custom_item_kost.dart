@@ -5,22 +5,23 @@ import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost
 
 import '../common/constant/assets.dart';
 import '../common/constant/color_value.dart';
+import '../model/api/kost_model.dart';
 
 class CustomItemKost extends StatelessWidget {
-  final KostPenghuniModel data;
+  final DataKost data;
   const CustomItemKost({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
+    final kamarTerisi = data.dataKamar.where((kamar) => kamar.status == 'Terisi').length;
+    final sisaKamar = data.dataKamar.where((kamar) => kamar.status == 'Kosong').length;
+
     return GestureDetector(
-      onTap: () => Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DetailKostPenghuni(data: data))),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailKostPenghuni(data: data))),
+      // onTap: () {},
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Color(0xFFBABABA))),
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xFFBABABA))),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -36,14 +37,10 @@ class CustomItemKost extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(data.nama,
-                              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+                          Text(data.namaKos, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
                           Text(
-                            data.jenis,
-                            style: TextStyle(
-                                fontSize: 13,
-                                color: Color(0xFF8C8C8C),
-                                fontWeight: FontWeight.w600),
+                            data.tipeKos,
+                            style: TextStyle(fontSize: 13, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
                           ),
                         ],
                       )
@@ -62,28 +59,20 @@ class CustomItemKost extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Penghuni aktif",
-                          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+                      Text("Penghuni aktif", style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
                       Text(
-                        "${data.dataPenghuni.length} orang",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: MyColor.mainBlue,
-                            fontWeight: FontWeight.bold),
+                        "$kamarTerisi orang",
+                        style: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Sisa Kamar",
-                          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+                      Text("Sisa Kamar", style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
                       Text(
-                        "${data.jumKamar - data.dataPenghuni.length} Kamar",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: MyColor.mainBlue,
-                            fontWeight: FontWeight.bold),
+                        "$sisaKamar Kamar",
+                        style: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
