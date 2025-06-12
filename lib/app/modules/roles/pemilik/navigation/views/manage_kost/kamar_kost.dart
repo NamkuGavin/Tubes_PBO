@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tubes_pbo/app/common/constant/navigate.dart';
 import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost/cari_penghuni.dart';
 
+import '../../../../../../common/constant/assets.dart';
 import '../../../../../../common/constant/color_value.dart';
 import '../../../../../../model/api/kost_model.dart';
 import '../../../../../../model/dummy/kost_model.dart';
+import '../../../../../../widgets/custom_simple_item_tile.dart';
 
 class KamarKost extends StatefulWidget {
   final DataKost data;
@@ -73,7 +76,7 @@ class _KamarKostState extends State<KamarKost> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              dataKamar.status.toUpperCase(),
+                              dataKamar.status,
                               style: TextStyle(color: dataKamar.status == "Kosong" ? MyColor.mainRed : MyColor.mainGreen),
                             ),
                             Padding(
@@ -92,15 +95,33 @@ class _KamarKostState extends State<KamarKost> {
                         ),
                         width: double.infinity,
                         padding: const EdgeInsets.all(16),
-                        child: ElevatedButton(
-                          onPressed: () => Navigate.navigatorPush(context, CariPenghuni()),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: MyColor.mainBlue,
-                              minimumSize: Size(double.infinity, 0),
-                              padding: EdgeInsets.symmetric(vertical: 12),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
-                          child: Text("+ Tambah Penghuni", style: TextStyle(color: Colors.white, fontSize: 15)),
-                        ),
+                        child: dataKamar.status == "Kosong"
+                            ? ElevatedButton(
+                                onPressed: () => Navigate.navigatorPush(context, CariPenghuni()),
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: MyColor.mainBlue,
+                                    minimumSize: Size(double.infinity, 0),
+                                    padding: EdgeInsets.symmetric(vertical: 12),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
+                                child: Text("+ Tambah Penghuni", style: TextStyle(color: Colors.white, fontSize: 15)),
+                              )
+                            : Container(
+                                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+                                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xFFBABABA))),
+                                child: Row(
+                                  children: [
+                                    SvgPicture.asset(IconAssets.person2, color: MyColor.mainBlue, height: 30),
+                                    SizedBox(width: 12),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(dataKamar.dataPenghuni.nama.toString(), style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+                                        Text("${dataKamar.dataPenghuni.jenisKelamin}, ${dataKamar.dataPenghuni.id}", style: TextStyle(fontSize: 13, color: Color(0xFF8C8C8C))),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
                       ),
                   ],
                 ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:tubes_pbo/app/model/api/penghuni_model.dart';
 
 import '../../model/api/add_kost_model.dart';
 import '../../model/api/kost_model.dart';
@@ -39,6 +40,25 @@ class ApiService {
       return AddKostModel.fromJson(jsonDecode(res.body));
     } else {
       print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<List<PenghuniModel>> getPenghuniAll() async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    print("URL PENGHUNI: ${UrlEndpoint.baseUrl}${UrlEndpoint.getPenghuniAll}");
+    final res = await http.get(
+      Uri.parse("${UrlEndpoint.baseUrl}${UrlEndpoint.getPenghuniAll}"),
+      headers: headers,
+    );
+    print("STATUS CODE(PENGHUNI): ${res.statusCode}");
+    print("RES PENGHUNI: ${res.body}");
+    if (res.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(res.body);
+      return data.map((e) => PenghuniModel.fromJson(e)).toList();
+    } else {
       throw HttpException('request error code ${res.statusCode}');
     }
   }

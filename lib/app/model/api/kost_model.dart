@@ -93,45 +93,49 @@ class DataKamar {
 }
 
 class DataPenghuni {
-  int? usia;
-  String? nama;
-  String? pekerjaan;
-  String? jenisKendaraan;
   int? id;
-  String? platKendaraan;
+  String? nama;
+  String? jenisKelamin;
+  int? usia;
   String? nomorHp;
+  String? pekerjaan;
   String? kontakDarurat;
+  String? jenisKendaraan;
+  String? platKendaraan;
 
   DataPenghuni({
-    this.usia,
-    this.nama,
-    this.pekerjaan,
-    this.jenisKendaraan,
     this.id,
-    this.platKendaraan,
+    this.nama,
+    this.jenisKelamin,
+    this.usia,
     this.nomorHp,
+    this.pekerjaan,
     this.kontakDarurat,
+    this.jenisKendaraan,
+    this.platKendaraan,
   });
 
   factory DataPenghuni.fromJson(Map<String, dynamic> json) => DataPenghuni(
-        usia: json["usia"],
-        nama: json["nama"],
-        pekerjaan: json["pekerjaan"],
-        jenisKendaraan: json["jenisKendaraan"],
         id: json["id"],
-        platKendaraan: json["platKendaraan"],
+        nama: json["nama"],
+        jenisKelamin: json["jenisKelamin"],
+        usia: json["usia"],
         nomorHp: json["nomorHp"],
+        pekerjaan: json["pekerjaan"],
         kontakDarurat: json["kontakDarurat"],
+        jenisKendaraan: json["jenisKendaraan"],
+        platKendaraan: json["platKendaraan"],
       );
 
   Map<String, dynamic> toJson() => {
-        "usia": usia,
-        "nama": nama,
-        "pekerjaan": pekerjaan,
-        "jenisKendaraan": jenisKendaraan,
         "id": id,
-        "platKendaraan": platKendaraan,
+        "nama": nama,
+        "jenisKelamin": jenisKelamin,
+        "usia": usia,
         "nomorHp": nomorHp,
+        "pekerjaan": pekerjaan,
         "kontakDarurat": kontakDarurat,
+        "jenisKendaraan": jenisKendaraan,
+        "platKendaraan": platKendaraan,
       };
 }
