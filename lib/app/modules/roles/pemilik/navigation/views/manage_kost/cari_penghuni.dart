@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../../common/constant/color_value.dart';
+import '../../../../../../model/api/kost_model.dart';
 import '../../../../../../model/api/penghuni_model.dart';
 import '../../../../../../network/configuration/api_service.dart';
 import '../../../../../../widgets/custom_simple_item_tile.dart';
 import '../../../../../../widgets/custom_text_form_field.dart';
 
 class CariPenghuni extends StatefulWidget {
-  const CariPenghuni({super.key});
+  final DataKost dataKost;
+  final DataKamar dataKamar;
+  const CariPenghuni({super.key, required this.dataKost, required this.dataKamar});
 
   @override
   State<CariPenghuni> createState() => _CariPenghuniState();
@@ -28,6 +31,16 @@ class _CariPenghuniState extends State<CariPenghuni> {
     var response = await ApiService().getPenghuniAll();
     setState(() {
       dataPenghuni = response;
+      _isLoad = false;
+    });
+  }
+
+  Future assignPenghuni(String penghuniId) async {
+    setState(() {
+      _isLoad = true;
+    });
+    var response = await ApiService().assignPenghuni(kosId: widget.dataKost.id.toString(), noKamar: widget.dataKamar.noKamar.toString(), penghuniId: penghuniId);
+    setState(() {
       _isLoad = false;
     });
   }
@@ -89,14 +102,24 @@ class _CariPenghuniState extends State<CariPenghuni> {
                                       itemCount: filterBySearch.length,
                                       itemBuilder: (context, index) {
                                         final penghuni = filterBySearch[index];
-                                        return ItemSearchPenghuni(data: penghuni);
+                                        return GestureDetector(
+                                            onTap: () async {
+                                              await assignPenghuni(penghuni.id.toString());
+                                              Navigator.pop(context);
+                                            },
+                                            child: ItemSearchPenghuni(data: penghuni));
                                       },
                                     ))
                               : ListView.builder(
                                   itemCount: dataPenghuni.length,
                                   itemBuilder: (context, index) {
                                     final penghuni = dataPenghuni[index];
-                                    return ItemSearchPenghuni(data: penghuni);
+                                    return GestureDetector(
+                                        onTap: () async {
+                                          await assignPenghuni(penghuni.id.toString());
+                                          Navigator.pop(context);
+                                        },
+                                        child: ItemSearchPenghuni(data: penghuni));
                                   },
                                 ),
                         ),

@@ -97,7 +97,7 @@ class _KamarKostState extends State<KamarKost> {
                         padding: const EdgeInsets.all(16),
                         child: dataKamar.status == "Kosong"
                             ? ElevatedButton(
-                                onPressed: () => Navigate.navigatorPush(context, CariPenghuni()),
+                                onPressed: () => Navigate.navigatorPush(context, CariPenghuni(dataKost: widget.data, dataKamar: dataKamar)),
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: MyColor.mainBlue,
                                     minimumSize: Size(double.infinity, 0),

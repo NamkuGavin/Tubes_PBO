@@ -4,11 +4,17 @@ import 'package:flutter_svg/svg.dart';
 import '../common/constant/assets.dart';
 import '../common/constant/color_value.dart';
 import '../model/api/penghuni_model.dart';
+import '../network/configuration/api_service.dart';
 
-class ItemSearchPenghuni extends StatelessWidget {
+class ItemSearchPenghuni extends StatefulWidget {
   final PenghuniModel data;
   const ItemSearchPenghuni({super.key, required this.data});
 
+  @override
+  State<ItemSearchPenghuni> createState() => _ItemSearchPenghuniState();
+}
+
+class _ItemSearchPenghuniState extends State<ItemSearchPenghuni> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,8 +28,8 @@ class ItemSearchPenghuni extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(data.nama, style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
-              Text("${data.jenisKelamin}, ${data.id}", style: TextStyle(fontSize: 13, color: Color(0xFF8C8C8C))),
+              Text(widget.data.nama, style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+              Text("${widget.data.jenisKelamin}, ${widget.data.id}", style: TextStyle(fontSize: 13, color: Color(0xFF8C8C8C))),
             ],
           )
         ],
