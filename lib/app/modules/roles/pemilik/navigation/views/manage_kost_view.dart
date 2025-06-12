@@ -43,16 +43,18 @@ class _ManageKostViewState extends State<ManageKostView> {
       appBar: AppBar(backgroundColor: Colors.transparent, title: Text("Kost Kamu"), centerTitle: true, automaticallyImplyLeading: false),
       body: _isLoad
           ? Center(child: CircularProgressIndicator())
-          : SafeArea(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: dataKost.length,
-                itemBuilder: (context, index) {
-                  final data = dataKost[index];
-                  return CustomItemKost(data: data);
-                },
-              ),
-            ),
+          : dataKost.isEmpty
+              ? Center(child: Text("DATA KOST KOSONG"))
+              : SafeArea(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: dataKost.length,
+                    itemBuilder: (context, index) {
+                      final data = dataKost[index];
+                      return CustomItemKost(data: data);
+                    },
+                  ),
+                ),
       floatingActionButton: _isLoad
           ? null
           : FloatingActionButton(

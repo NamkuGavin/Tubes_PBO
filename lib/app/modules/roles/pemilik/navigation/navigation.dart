@@ -56,7 +56,7 @@ class _BuildPemilikNavigationState extends State<BuildPemilikNavigation> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _currentIndex = 1;
+    _currentIndex = 0;
   }
 
   @override
@@ -69,20 +69,17 @@ class _BuildPemilikNavigationState extends State<BuildPemilikNavigation> {
           items: [
             BottomNavigationBarItem(
               icon: SvgPicture.asset(IconAssets.home, height: 25),
-              activeIcon:
-                  SvgPicture.asset(IconAssets.home, height: 25, color: MyColor.mainBlue),
+              activeIcon: SvgPicture.asset(IconAssets.home, height: 25, color: MyColor.mainBlue),
               label: 'Beranda',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(IconAssets.kost2, height: 30),
-              activeIcon:
-                  SvgPicture.asset(IconAssets.kost2, height: 30, color: MyColor.mainBlue),
+              activeIcon: SvgPicture.asset(IconAssets.kost2, height: 30, color: MyColor.mainBlue),
               label: 'Manage Kost',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(IconAssets.person, height: 30),
-              activeIcon:
-                  SvgPicture.asset(IconAssets.person, height: 30, color: MyColor.mainBlue),
+              activeIcon: SvgPicture.asset(IconAssets.person, height: 30, color: MyColor.mainBlue),
               label: 'Profil',
             ),
           ],

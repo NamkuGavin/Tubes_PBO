@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tubes_pbo/app/common/constant/navigate.dart';
+import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost/cari_penghuni.dart';
 
 import '../../../../../../common/constant/color_value.dart';
 import '../../../../../../model/api/kost_model.dart';
@@ -91,7 +93,7 @@ class _KamarKostState extends State<KamarKost> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(16),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () => Navigate.navigatorPush(context, CariPenghuni()),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: MyColor.mainBlue,
                               minimumSize: Size(double.infinity, 0),
