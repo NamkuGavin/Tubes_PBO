@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:tubes_pbo/app/model/api/all_penghuni_model.dart';
 import 'package:tubes_pbo/app/model/api/penghuni_model.dart';
+import 'package:tubes_pbo/app/model/api/user_model.dart';
 
 import '../../model/api/base_response_model.dart';
 import '../../model/api/kost_model.dart';
@@ -140,6 +141,58 @@ class ApiService {
     print("RES KOSONG KAMAR: ${res.body}");
     if (res.statusCode == 200) {
       return BaseResponseModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<BaseResponseModel> registerPemilik({required String nama, required String email, required String password}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    final body = {"nama": nama, "email": email, "password": password, "role": "pemilik"};
+    print("RAW REGISTER PEMILIK: $body");
+    print("URL REGISTER PEMILIK: ${UrlEndpoint.baseUrl}${UrlEndpoint.registerPemilik}");
+    final res = await http.post(Uri.parse("${UrlEndpoint.baseUrl}${UrlEndpoint.registerPemilik}"), headers: headers, body: jsonEncode(body));
+    print("STATUS CODE(REGISTER PEMILIK): ${res.statusCode}");
+    print("RES REGISTER PEMILIK: ${res.body}");
+    if (res.statusCode == 200) {
+      return BaseResponseModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<UserModel> getProfilePemilik({required String namaUser}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    print("URL PROFILE PEMILIK: ${UrlEndpoint.baseUrl}/pemilik/$namaUser");
+    final res = await http.get(Uri.parse("${UrlEndpoint.baseUrl}/pemilik/$namaUser"), headers: headers);
+    print("STATUS CODE(PROFILE PEMILIK): ${res.statusCode}");
+    print("RES PROFILE PEMILIK: ${res.body}");
+    if (res.statusCode == 200) {
+      return UserModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future editProfilePemilik({required String pemilikId, required String nama}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    final body = {"nama": nama};
+    print("RAW EDIT KOST: $body");
+    print("URL EDIT PROFILE PEMILIK: ${UrlEndpoint.baseUrl}/pemilik/$pemilikId");
+    final res = await http.patch(Uri.parse("${UrlEndpoint.baseUrl}/pemilik/$pemilikId"), headers: headers, body: jsonEncode(body));
+    print("STATUS CODE(EDIT PROFILE PEMILIK): ${res.statusCode}");
+    print("RES EDIT PROFILE PEMILIK: ${res.body}");
+    if (res.statusCode == 200) {
+      return "Success";
     } else {
       print(res.statusCode);
       throw HttpException('request error code ${res.statusCode}');

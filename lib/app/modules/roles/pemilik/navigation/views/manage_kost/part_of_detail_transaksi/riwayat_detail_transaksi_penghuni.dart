@@ -4,15 +4,13 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../../../common/constant/assets.dart';
 import '../../../../../../../common/constant/color_value.dart';
 import '../../../../../../../common/utils/shared_code.dart';
-import '../../../../../../../model/dummy/kost_model.dart';
-import '../../../../../../../model/dummy/penghuni_model.dart';
+import '../../../../../../../model/api/kost_model.dart';
+import '../../../../../../../model/api/penghuni_model.dart';
 import '../../../../../../../widgets/custom_item_tile.dart';
 
 class RiwayatDetailTransaksiPenghuni extends StatelessWidget {
-  final RiwayatPembayaran data;
-  final KostPenghuniModel dataKost;
-  const RiwayatDetailTransaksiPenghuni(
-      {super.key, required this.data, required this.dataKost});
+  final List<DataTransaksi> dataTransaksi;
+  const RiwayatDetailTransaksiPenghuni({super.key, required this.dataTransaksi});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +21,9 @@ class RiwayatDetailTransaksiPenghuni extends StatelessWidget {
         SizedBox(height: 12),
         ListView.builder(
           shrinkWrap: true,
-          itemCount: data.riwayatTransaksi.length,
+          itemCount: dataTransaksi.length,
           itemBuilder: (context, index) {
-            final dataTransaksi = data.riwayatTransaksi[index];
+            final transaksi = dataTransaksi[index];
             return Container(
               padding: EdgeInsets.all(15),
               margin: EdgeInsets.only(bottom: 12),
@@ -38,8 +36,7 @@ class RiwayatDetailTransaksiPenghuni extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(10),
                     margin: EdgeInsets.only(right: 12),
-                    decoration: BoxDecoration(
-                        color: MyColor.mainGreen, borderRadius: BorderRadius.circular(8)),
+                    decoration: BoxDecoration(color: MyColor.mainGreen, borderRadius: BorderRadius.circular(8)),
                     child: SvgPicture.asset(
                       IconAssets.trendUp,
                       color: Colors.white,
@@ -49,17 +46,10 @@ class RiwayatDetailTransaksiPenghuni extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("+ ${SharedCode().convertToIdr(dataTransaksi.nominal, 0)}",
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: MyColor.mainGreen)),
+                      Text("+ ${SharedCode().convertToIdr(transaksi.nominal, 0)}", style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: MyColor.mainGreen)),
                       Text(
-                        dataTransaksi.tanggal,
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Color(0xFF8C8C8C),
-                            fontWeight: FontWeight.w600),
+                        transaksi.tanggalPembayaran,
+                        style: TextStyle(fontSize: 13, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
                       ),
                     ],
                   )

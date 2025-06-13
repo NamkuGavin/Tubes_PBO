@@ -71,7 +71,7 @@ class _DetailPenghuniState extends State<DetailPenghuni> {
                             Navigate.navigatorPushAndRemove(context, BuildPemilikNavigation());
                           }),
                       BodyDetailPenghuni(data: data!, dataKamar: widget.dataKamar),
-                      RiwayatDetailPenghuni(data: data!),
+                      RiwayatDetailPenghuni(data: data!, dataKost: widget.dataKost),
                     ],
                   ),
                 ),

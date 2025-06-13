@@ -5,12 +5,15 @@ import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost
 
 import '../../../../../../../common/constant/assets.dart';
 import '../../../../../../../common/constant/color_value.dart';
+import '../../../../../../../common/constant/navigate.dart';
+import '../../../../../../../model/api/kost_model.dart';
 import '../../../../../../../model/api/penghuni_model.dart';
 import '../../../../../../../widgets/custom_item_tile.dart';
 
 class RiwayatDetailPenghuni extends StatelessWidget {
   final PenghuniModel data;
-  const RiwayatDetailPenghuni({super.key, required this.data});
+  final DataKost dataKost;
+  const RiwayatDetailPenghuni({super.key, required this.data, required this.dataKost});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,8 @@ class RiwayatDetailPenghuni extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
             child: GestureDetector(
-              onTap: () {},
-              // onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPembayaran(dataKost: matchedKost, data: pembayaran))),
+              // onTap: () {},
+              onTap: () => Navigate.navigatorPush(context, DetailPembayaran(dataKost: dataKost, dataPembayaran: pembayaran, dataTransaksi: data.dataPenghuni.dataTransaksi)),
               child: CustomItemTile(
                 icon: SvgPicture.asset(
                   IconAssets.bill,
@@ -37,7 +40,7 @@ class RiwayatDetailPenghuni extends StatelessWidget {
                 name: pembayaran.status == "Lunas" ? "LUNAS" : "BELUM LUNAS",
                 kost: "",
                 currency: pembayaran.nominalPembayaran,
-                date: pembayaran.tanggalBayar.toString(),
+                date: pembayaran.tanggalAwal.toString(),
                 lunas: pembayaran.status == "Lunas",
               ),
             ),

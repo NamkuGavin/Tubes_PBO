@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tubes_pbo/app/model/api/user_model.dart';
 
 import '../../../../../../common/utils/shared_code.dart';
 
 class ProfileItem extends StatelessWidget {
-  const ProfileItem({super.key});
+  final UserModel dataUser;
+  const ProfileItem({super.key, required this.dataUser});
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +15,13 @@ class ProfileItem extends StatelessWidget {
           backgroundColor: Colors.black12,
           radius: 50,
           child: Text(
-            SharedCode().getInitials("Muhammad Gavin Arasyi"),
+            SharedCode().getInitials(dataUser.nama),
             style: TextStyle(fontSize: 20, color: Colors.black),
           ),
         ),
         SizedBox(height: 24),
-        Text("Muhammad Gavin Arasyi",
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-            textAlign: TextAlign.center),
-        Text("m.gavin10@gmail.com", style: TextStyle(), textAlign: TextAlign.center),
+        Text(dataUser.nama, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20), textAlign: TextAlign.center),
+        Text(dataUser.email, style: TextStyle(), textAlign: TextAlign.center),
       ],
     );
   }

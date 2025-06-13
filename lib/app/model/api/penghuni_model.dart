@@ -35,6 +35,7 @@ class DataPenghuni {
   String jenisKendaraan;
   String platKendaraan;
   List<RiwayatPembayaran> riwayatPembayaran;
+  List<DataTransaksi> dataTransaksi;
 
   DataPenghuni({
     required this.id,
@@ -47,6 +48,7 @@ class DataPenghuni {
     required this.jenisKendaraan,
     required this.platKendaraan,
     required this.riwayatPembayaran,
+    required this.dataTransaksi,
   });
 
   factory DataPenghuni.fromJson(Map<String, dynamic> json) => DataPenghuni(
@@ -60,6 +62,7 @@ class DataPenghuni {
         jenisKendaraan: json["jenisKendaraan"],
         platKendaraan: json["platKendaraan"],
         riwayatPembayaran: List<RiwayatPembayaran>.from(json["riwayatPembayaran"].map((x) => RiwayatPembayaran.fromJson(x))),
+        dataTransaksi: List<DataTransaksi>.from(json["dataTransaksi"].map((x) => DataTransaksi.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -73,32 +76,57 @@ class DataPenghuni {
         "jenisKendaraan": jenisKendaraan,
         "platKendaraan": platKendaraan,
         "riwayatPembayaran": List<dynamic>.from(riwayatPembayaran.map((x) => x.toJson())),
+        "dataTransaksi": List<dynamic>.from(dataTransaksi.map((x) => x.toJson())),
+      };
+}
+
+class DataTransaksi {
+  int nominal;
+  String tanggalPembayaran;
+
+  DataTransaksi({
+    required this.nominal,
+    required this.tanggalPembayaran,
+  });
+
+  factory DataTransaksi.fromJson(Map<String, dynamic> json) => DataTransaksi(
+        nominal: json["nominal"],
+        tanggalPembayaran: json["tanggalPembayaran"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "nominal": nominal,
+        "tanggalPembayaran": tanggalPembayaran,
       };
 }
 
 class RiwayatPembayaran {
   int id;
-  dynamic tanggalBayar;
+  String tanggalAwal;
+  String tanggalAkhir;
   int nominalPembayaran;
   String status;
 
   RiwayatPembayaran({
     required this.id,
-    required this.tanggalBayar,
+    required this.tanggalAwal,
+    required this.tanggalAkhir,
     required this.nominalPembayaran,
     required this.status,
   });
 
   factory RiwayatPembayaran.fromJson(Map<String, dynamic> json) => RiwayatPembayaran(
         id: json["id"],
-        tanggalBayar: json["tanggalBayar"],
+        tanggalAwal: json["tanggalAwal"],
+        tanggalAkhir: json["tanggalAkhir"],
         nominalPembayaran: json["nominalPembayaran"],
         status: json["status"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "tanggalBayar": tanggalBayar,
+        "tanggalAwal": tanggalAwal,
+        "tanggalAkhir": tanggalAkhir,
         "nominalPembayaran": nominalPembayaran,
         "status": status,
       };

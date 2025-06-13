@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tubes_pbo/app/modules/roles/pemilik/auth/views/login_view.dart';
 import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/profile/edit_profile.dart';
+import 'package:tubes_pbo/app/network/configuration/api_service.dart';
 
 import '../../../../../common/constant/color_value.dart';
+import '../../../../../model/api/user_model.dart';
 import '../../../../../widgets/card_info/build_card_info.dart';
 import 'profile/profile_item.dart';
 
@@ -14,23 +17,48 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  UserModel? data;
+  bool _isLoad = false;
+
+  Future getProfilePemilik() async {
+    setState(() {
+      _isLoad = true;
+    });
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var namaUser = prefs.getString('namaUser');
+    var response = await ApiService().getProfilePemilik(namaUser: namaUser.toString());
+    setState(() {
+      data = response;
+      _isLoad = false;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getProfilePemilik();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColor.neutral500,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
-          child: Column(
-            children: [
-              ProfileItem(),
-              SizedBox(height: 16),
-              Divider(color: Colors.black.withOpacity(0.05), thickness: 1),
-              SizedBox(height: 32),
-              _menuProfile(),
-            ],
-          ),
-        ),
+        child: _isLoad
+            ? Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
+                child: Column(
+                  children: [
+                    ProfileItem(dataUser: data!),
+                    SizedBox(height: 16),
+                    Divider(color: Colors.black.withOpacity(0.05), thickness: 1),
+                    SizedBox(height: 32),
+                    _menuProfile(),
+                  ],
+                ),
+              ),
       ),
     );
   }
@@ -49,11 +77,7 @@ class _ProfileViewState extends State<ProfileView> {
         ),
         child: Column(
           children: [
-            _button(
-                onPress: () => Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => EditProfile())),
-                icon: Icons.person,
-                title: 'Edit Profil'),
+            _button(onPress: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfile(dataUser: data!))), icon: Icons.person, title: 'Edit Profil'),
             SizedBox(height: 16),
             _button(
                 onPress: () => Navigator.of(context).pushAndRemoveUntil(
@@ -94,10 +118,7 @@ class _ProfileViewState extends State<ProfileView> {
               child: Center(child: Icon(icon, color: isLogout ? Colors.red : Colors.black)),
             ),
             SizedBox(width: 15),
-            Text(title,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: isLogout ? Colors.red : Colors.black)),
+            Text(title, style: TextStyle(fontWeight: FontWeight.w600, color: isLogout ? Colors.red : Colors.black)),
             Spacer(),
             Icon(Icons.navigate_next_sharp)
           ],
