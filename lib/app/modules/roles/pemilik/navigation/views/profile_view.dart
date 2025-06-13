@@ -26,11 +26,6 @@ class _ProfileViewState extends State<ProfileView> {
               ProfileItem(),
               SizedBox(height: 16),
               Divider(color: Colors.black.withOpacity(0.05), thickness: 1),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: BuildCardInfo(),
-              ),
               SizedBox(height: 32),
               _menuProfile(),
             ],

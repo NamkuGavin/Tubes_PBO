@@ -5,7 +5,7 @@ import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost
 
 import '../../../../../../../common/constant/assets.dart';
 import '../../../../../../../common/constant/color_value.dart';
-import '../../../../../../../model/dummy/penghuni_model.dart';
+import '../../../../../../../model/api/penghuni_model.dart';
 import '../../../../../../../widgets/custom_item_tile.dart';
 
 class RiwayatDetailPenghuni extends StatelessWidget {
@@ -14,8 +14,7 @@ class RiwayatDetailPenghuni extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sortedPembayaran = data.riwayatPembayaran.toList()
-      ..sort((a, b) => a.isLunas ? 1 : -1);
+    final sortedPembayaran = data.dataPenghuni.riwayatPembayaran.toList()..sort((a, b) => a.status == "Lunas" ? 1 : -1);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,28 +22,23 @@ class RiwayatDetailPenghuni extends StatelessWidget {
         Text("Riwayat Pembayaran Kost", style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(height: 12),
         ...sortedPembayaran.map((pembayaran) {
-          final matchedKost =
-              AllDummyData.dataKostPenghuni.firstWhere((k) => k.id == pembayaran.kostId);
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
             child: GestureDetector(
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          DetailPembayaran(dataKost: matchedKost, data: pembayaran))),
+              onTap: () {},
+              // onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPembayaran(dataKost: matchedKost, data: pembayaran))),
               child: CustomItemTile(
                 icon: SvgPicture.asset(
                   IconAssets.bill,
                   color: Colors.white,
                   height: 20,
                 ),
-                colorItem: pembayaran.isLunas ? MyColor.mainGreen : MyColor.mainRed,
-                name: pembayaran.isLunas ? "LUNAS" : "BELUM LUNAS",
+                colorItem: pembayaran.status == "Lunas" ? MyColor.mainGreen : MyColor.mainRed,
+                name: pembayaran.status == "Lunas" ? "LUNAS" : "BELUM LUNAS",
                 kost: "",
-                currency: pembayaran.currency,
-                date: pembayaran.date,
-                lunas: pembayaran.isLunas,
+                currency: pembayaran.nominalPembayaran,
+                date: pembayaran.tanggalBayar.toString(),
+                lunas: pembayaran.status == "Lunas",
               ),
             ),
           );

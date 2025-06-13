@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../common/constant/assets.dart';
 import '../../../../common/constant/color_value.dart';
-import 'views/home_view.dart';
 import 'views/manage_kost_view.dart';
 import 'views/profile_view.dart';
 
@@ -19,7 +18,6 @@ class _BuildPemilikNavigationState extends State<BuildPemilikNavigation> {
   final List _pageStack = [];
 
   final _tabs = [
-    const HomeView(),
     const ManageKostView(),
     const ProfileView(),
   ];
@@ -67,11 +65,6 @@ class _BuildPemilikNavigationState extends State<BuildPemilikNavigation> {
         body: _tabs[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           items: [
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(IconAssets.home, height: 25),
-              activeIcon: SvgPicture.asset(IconAssets.home, height: 25, color: MyColor.mainBlue),
-              label: 'Beranda',
-            ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(IconAssets.kost2, height: 30),
               activeIcon: SvgPicture.asset(IconAssets.kost2, height: 30, color: MyColor.mainBlue),

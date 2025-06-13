@@ -20,7 +20,7 @@ class CustomItemKost extends StatelessWidget {
       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailKostPenghuni(data: data))),
       // onTap: () {},
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+        margin: EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xFFBABABA))),
         child: Column(
           mainAxisSize: MainAxisSize.min,

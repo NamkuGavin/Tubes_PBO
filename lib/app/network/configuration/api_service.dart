@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:tubes_pbo/app/model/api/all_penghuni_model.dart';
 import 'package:tubes_pbo/app/model/api/penghuni_model.dart';
 
 import '../../model/api/base_response_model.dart';
@@ -44,7 +45,7 @@ class ApiService {
     }
   }
 
-  Future<List<PenghuniModel>> getPenghuniAll() async {
+  Future<List<AllPenghuniModel>> getPenghuniAll() async {
     Map<String, String> headers = {
       'Content-Type': 'application/json',
     };
@@ -57,7 +58,7 @@ class ApiService {
     print("RES PENGHUNI: ${res.body}");
     if (res.statusCode == 200) {
       final List<dynamic> data = jsonDecode(res.body);
-      return data.map((e) => PenghuniModel.fromJson(e)).toList();
+      return data.map((e) => AllPenghuniModel.fromJson(e)).toList();
     } else {
       throw HttpException('request error code ${res.statusCode}');
     }
@@ -105,6 +106,38 @@ class ApiService {
     final res = await http.delete(Uri.parse("${UrlEndpoint.baseUrl}${UrlEndpoint.deleteKost}/$idKos"), headers: headers);
     print("STATUS CODE(DELETE KOST): ${res.statusCode}");
     print("RES DELETE KOST: ${res.body}");
+    if (res.statusCode == 200) {
+      return BaseResponseModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<PenghuniModel> getPenghuniByKamar({required String kosId, required String noKamar}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    print("URL GET PENGHUNI BY KAMAR: ${UrlEndpoint.baseUrl}/kos/$kosId/$noKamar/penghuni");
+    final res = await http.get(Uri.parse("${UrlEndpoint.baseUrl}/kos/$kosId/$noKamar/penghuni"), headers: headers);
+    print("STATUS CODE(GET PENGHUNI BY KAMAR): ${res.statusCode}");
+    print("RES GET PENGHUNI BY KAMAR: ${res.body}");
+    if (res.statusCode == 200) {
+      return PenghuniModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<BaseResponseModel> kosongKamar({required String kosId, required String noKamar}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    print("URL KOSONG KAMAR: ${UrlEndpoint.baseUrl}/kos/$kosId/$noKamar/kosong");
+    final res = await http.post(Uri.parse("${UrlEndpoint.baseUrl}/kos/$kosId/$noKamar/kosong"), headers: headers);
+    print("STATUS CODE(KOSONG KAMAR): ${res.statusCode}");
+    print("RES KOSONG KAMAR: ${res.body}");
     if (res.statusCode == 200) {
       return BaseResponseModel.fromJson(jsonDecode(res.body));
     } else {

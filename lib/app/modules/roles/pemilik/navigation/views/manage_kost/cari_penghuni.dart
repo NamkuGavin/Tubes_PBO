@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tubes_pbo/app/common/constant/navigate.dart';
+import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/navigation.dart';
 
 import '../../../../../../common/constant/color_value.dart';
 import '../../../../../../model/api/kost_model.dart';
-import '../../../../../../model/api/penghuni_model.dart';
+import '../../../../../../model/api/all_penghuni_model.dart';
 import '../../../../../../network/configuration/api_service.dart';
 import '../../../../../../widgets/custom_simple_item_tile.dart';
 import '../../../../../../widgets/custom_text_form_field.dart';
@@ -20,8 +22,8 @@ class CariPenghuni extends StatefulWidget {
 class _CariPenghuniState extends State<CariPenghuni> {
   final searchController = TextEditingController();
 
-  List<PenghuniModel> filterBySearch = [];
-  List<PenghuniModel> dataPenghuni = [];
+  List<AllPenghuniModel> filterBySearch = [];
+  List<AllPenghuniModel> dataPenghuni = [];
   bool _isLoad = false;
 
   Future getPenghuniAll() async {
@@ -105,7 +107,7 @@ class _CariPenghuniState extends State<CariPenghuni> {
                                         return GestureDetector(
                                             onTap: () async {
                                               await assignPenghuni(penghuni.id.toString());
-                                              Navigator.pop(context);
+                                              Navigate.navigatorPushAndRemove(context, BuildPemilikNavigation());
                                             },
                                             child: ItemSearchPenghuni(data: penghuni));
                                       },
@@ -117,9 +119,7 @@ class _CariPenghuniState extends State<CariPenghuni> {
                                     return GestureDetector(
                                         onTap: () async {
                                           await assignPenghuni(penghuni.id.toString());
-                                          if (mounted) {
-                                            Navigator.pop(context);
-                                          }
+                                          Navigate.navigatorPushAndRemove(context, BuildPemilikNavigation());
                                         },
                                         child: ItemSearchPenghuni(data: penghuni));
                                   },

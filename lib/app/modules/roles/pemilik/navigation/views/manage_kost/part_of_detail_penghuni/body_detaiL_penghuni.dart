@@ -2,22 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:tubes_pbo/app/common/constant/assets.dart';
 
 import '../../../../../../../common/constant/color_value.dart';
-import '../../../../../../../model/dummy/penghuni_model.dart';
+import '../../../../../../../model/api/kost_model.dart';
+import '../../../../../../../model/api/penghuni_model.dart';
 import '../../../../../../../widgets/custom_title_subtitle.dart';
 
 class BodyDetailPenghuni extends StatelessWidget {
   final PenghuniModel data;
-  const BodyDetailPenghuni({super.key, required this.data});
+  final DataKamar dataKamar;
+  const BodyDetailPenghuni({super.key, required this.data, required this.dataKamar});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(bottom: 30),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Color(0xFFBABABA))),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xFFBABABA))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -29,20 +28,16 @@ class BodyDetailPenghuni extends StatelessWidget {
               children: [
                 CustomTitleSubtitle(
                     title: "Umur",
-                    subtitle: "${data.umur} Tahun",
+                    subtitle: "${data.dataPenghuni.usia} Tahun",
                     titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                    subtitleStyle: TextStyle(
-                        fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
+                    subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
                 SizedBox(
                   width: 100,
                   child: CustomTitleSubtitle(
                       title: "Kamar",
-                      subtitle: "Kamar ${data.noKamar}",
+                      subtitle: "Kamar ${dataKamar.noKamar}",
                       titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                      subtitleStyle: TextStyle(
-                          fontSize: 13,
-                          color: MyColor.mainBlue,
-                          fontWeight: FontWeight.bold)),
+                      subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -55,20 +50,16 @@ class BodyDetailPenghuni extends StatelessWidget {
               children: [
                 CustomTitleSubtitle(
                     title: "Pekerjaan",
-                    subtitle: data.pekerjaan,
+                    subtitle: data.dataPenghuni.pekerjaan,
                     titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                    subtitleStyle: TextStyle(
-                        fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
+                    subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
                 SizedBox(
                   width: 100,
                   child: CustomTitleSubtitle(
                       title: "No. Handphone",
-                      subtitle: "${data.noHandphone}",
+                      subtitle: "${data.dataPenghuni.nomorHp}",
                       titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                      subtitleStyle: TextStyle(
-                          fontSize: 13,
-                          color: MyColor.mainBlue,
-                          fontWeight: FontWeight.bold)),
+                      subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -81,20 +72,16 @@ class BodyDetailPenghuni extends StatelessWidget {
               children: [
                 CustomTitleSubtitle(
                     title: "Kendaraan",
-                    subtitle: data.kendaraan,
+                    subtitle: data.dataPenghuni.jenisKendaraan,
                     titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                    subtitleStyle: TextStyle(
-                        fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
+                    subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
                 SizedBox(
                   width: 100,
                   child: CustomTitleSubtitle(
                       title: "No. Plat",
-                      subtitle: data.noPlat,
+                      subtitle: data.dataPenghuni.platKendaraan,
                       titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                      subtitleStyle: TextStyle(
-                          fontSize: 13,
-                          color: MyColor.mainBlue,
-                          fontWeight: FontWeight.bold)),
+                      subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -107,20 +94,16 @@ class BodyDetailPenghuni extends StatelessWidget {
               children: [
                 CustomTitleSubtitle(
                     title: "No. Darurat",
-                    subtitle: "${data.noDarurat}",
+                    subtitle: "${data.dataPenghuni.kontakDarurat}",
                     titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                    subtitleStyle: TextStyle(
-                        fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
+                    subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
                 SizedBox(
                   width: 100,
                   child: CustomTitleSubtitle(
                       title: "ID",
-                      subtitle: data.id,
+                      subtitle: data.dataPenghuni.id.toString(),
                       titleStyle: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                      subtitleStyle: TextStyle(
-                          fontSize: 13,
-                          color: MyColor.mainBlue,
-                          fontWeight: FontWeight.bold)),
+                      subtitleStyle: TextStyle(fontSize: 13, color: MyColor.mainBlue, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),

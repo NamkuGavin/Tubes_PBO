@@ -3,11 +3,11 @@ import 'package:flutter_svg/svg.dart';
 
 import '../common/constant/assets.dart';
 import '../common/constant/color_value.dart';
-import '../model/api/penghuni_model.dart';
+import '../model/api/all_penghuni_model.dart';
 import '../network/configuration/api_service.dart';
 
 class ItemSearchPenghuni extends StatefulWidget {
-  final PenghuniModel data;
+  final AllPenghuniModel data;
   const ItemSearchPenghuni({super.key, required this.data});
 
   @override

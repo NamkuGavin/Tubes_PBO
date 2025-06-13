@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tubes_pbo/app/common/constant/navigate.dart';
 import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost/cari_penghuni.dart';
+import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/manage_kost/detail_penghuni.dart';
 
 import '../../../../../../common/constant/assets.dart';
 import '../../../../../../common/constant/color_value.dart';
@@ -105,21 +106,24 @@ class _KamarKostState extends State<KamarKost> {
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
                                 child: Text("+ Tambah Penghuni", style: TextStyle(color: Colors.white, fontSize: 15)),
                               )
-                            : Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-                                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xFFBABABA))),
-                                child: Row(
-                                  children: [
-                                    SvgPicture.asset(IconAssets.person2, color: MyColor.mainBlue, height: 30),
-                                    SizedBox(width: 12),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(dataKamar.dataPenghuni.nama.toString(), style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
-                                        Text("${dataKamar.dataPenghuni.jenisKelamin}, ${dataKamar.dataPenghuni.id}", style: TextStyle(fontSize: 13, color: Color(0xFF8C8C8C))),
-                                      ],
-                                    )
-                                  ],
+                            : GestureDetector(
+                                onTap: () => Navigate.navigatorPush(context, DetailPenghuni(dataKost: widget.data, dataKamar: dataKamar)),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+                                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xFFBABABA))),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(IconAssets.person2, color: MyColor.mainBlue, height: 30),
+                                      SizedBox(width: 12),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(dataKamar.dataPenghuni.nama.toString(), style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+                                          Text("${dataKamar.dataPenghuni.jenisKelamin}, ${dataKamar.dataPenghuni.id}", style: TextStyle(fontSize: 13, color: Color(0xFF8C8C8C))),
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                       ),

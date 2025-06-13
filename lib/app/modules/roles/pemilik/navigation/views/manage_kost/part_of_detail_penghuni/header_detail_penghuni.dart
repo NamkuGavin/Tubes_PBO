@@ -3,11 +3,12 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../../../common/constant/assets.dart';
 import '../../../../../../../common/constant/color_value.dart';
-import '../../../../../../../model/dummy/penghuni_model.dart';
+import '../../../../../../../model/api/penghuni_model.dart';
 
 class HeaderDetailPenghuni extends StatelessWidget {
   final PenghuniModel data;
-  const HeaderDetailPenghuni({super.key, required this.data});
+  final Function() onKosongin;
+  const HeaderDetailPenghuni({super.key, required this.data, required this.onKosongin});
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +24,16 @@ class HeaderDetailPenghuni extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(data.nama,
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                  Text(data.dataPenghuni.nama, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                   Text(
-                    data.jenisKelamin,
-                    style: TextStyle(
-                        fontSize: 15, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
+                    data.dataPenghuni.jenisKelamin,
+                    style: TextStyle(fontSize: 15, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
             ],
           ),
-          SvgPicture.asset(IconAssets.delete, color: Colors.red, height: 30)
+          GestureDetector(onTap: onKosongin, child: SvgPicture.asset(IconAssets.delete, color: Colors.red, height: 30))
         ],
       ),
     );
