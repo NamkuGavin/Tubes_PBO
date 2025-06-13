@@ -78,4 +78,38 @@ class ApiService {
       throw HttpException('request error code ${res.statusCode}');
     }
   }
+
+  Future<BaseResponseModel> editKost({required String idKos, required String namaKos, required int harga, required String deskripsi}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    final body = {"namaKos": namaKos, "harga": harga, "deskripsi": deskripsi};
+    print("RAW EDIT KOST: $body");
+    print("URL EDIT KOST: ${UrlEndpoint.baseUrl}${UrlEndpoint.editKost}/$idKos");
+    final res = await http.post(Uri.parse("${UrlEndpoint.baseUrl}${UrlEndpoint.editKost}/$idKos"), headers: headers, body: jsonEncode(body));
+    print("STATUS CODE(EDIT KOST): ${res.statusCode}");
+    print("RES EDIT KOST: ${res.body}");
+    if (res.statusCode == 200) {
+      return BaseResponseModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<BaseResponseModel> deleteKost({required String idKos}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    print("URL DELETE KOST: ${UrlEndpoint.baseUrl}${UrlEndpoint.deleteKost}/$idKos");
+    final res = await http.delete(Uri.parse("${UrlEndpoint.baseUrl}${UrlEndpoint.deleteKost}/$idKos"), headers: headers);
+    print("STATUS CODE(DELETE KOST): ${res.statusCode}");
+    print("RES DELETE KOST: ${res.body}");
+    if (res.statusCode == 200) {
+      return BaseResponseModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
 }

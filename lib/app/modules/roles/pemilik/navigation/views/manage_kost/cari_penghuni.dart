@@ -117,7 +117,9 @@ class _CariPenghuniState extends State<CariPenghuni> {
                                     return GestureDetector(
                                         onTap: () async {
                                           await assignPenghuni(penghuni.id.toString());
-                                          Navigator.pop(context);
+                                          if (mounted) {
+                                            Navigator.pop(context);
+                                          }
                                         },
                                         child: ItemSearchPenghuni(data: penghuni));
                                   },

@@ -3,4 +3,6 @@ class UrlEndpoint {
   static final String getKostAll = "/kos/view";
   static final String addKost = "/kos/tambah";
   static final String getPenghuniAll = "/penghuni";
+  static final String editKost = "/kos/edit";
+  static final String deleteKost = "/kos/hapus";
 }

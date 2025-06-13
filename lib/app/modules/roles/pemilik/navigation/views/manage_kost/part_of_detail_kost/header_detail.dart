@@ -6,11 +6,18 @@ import '../../../../../../../common/constant/assets.dart';
 import '../../../../../../../common/constant/color_value.dart';
 import '../../../../../../../model/api/kost_model.dart';
 import '../../../../../../../model/dummy/kost_model.dart';
+import '../../../../../../../network/configuration/api_service.dart';
 
-class HeaderDetail extends StatelessWidget {
+class HeaderDetail extends StatefulWidget {
   final DataKost data;
-  const HeaderDetail({super.key, required this.data});
+  final Function() onDelete;
+  const HeaderDetail({super.key, required this.data, required this.onDelete});
 
+  @override
+  State<HeaderDetail> createState() => _HeaderDetailState();
+}
+
+class _HeaderDetailState extends State<HeaderDetail> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,9 +32,9 @@ class HeaderDetail extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(data.namaKos, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                  Text(widget.data.namaKos, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                   Text(
-                    data.tipeKos,
+                    widget.data.tipeKos,
                     style: TextStyle(fontSize: 15, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
                   ),
                 ],
@@ -37,12 +44,11 @@ class HeaderDetail extends StatelessWidget {
           Row(
             children: [
               GestureDetector(
-                  onTap: () {},
-                  // onTap: () => Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => EditKost(data: data))),
+                  // onTap: () {},
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EditKost(data: widget.data))),
                   child: SvgPicture.asset(IconAssets.edit, height: 30)),
               SizedBox(width: 15),
-              SvgPicture.asset(IconAssets.delete, color: Colors.red, height: 30),
+              GestureDetector(onTap: widget.onDelete, child: SvgPicture.asset(IconAssets.delete, color: Colors.red, height: 30)),
             ],
           )
         ],
