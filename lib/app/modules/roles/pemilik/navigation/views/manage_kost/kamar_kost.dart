@@ -98,7 +98,7 @@ class _KamarKostState extends State<KamarKost> {
                         padding: const EdgeInsets.all(16),
                         child: dataKamar.status == "Kosong"
                             ? ElevatedButton(
-                                onPressed: () => Navigate.navigatorPush(context, CariPenghuni(dataKost: widget.data, dataKamar: dataKamar)),
+                                onPressed: () => Navigate.navigatorPush(context, () => CariPenghuni(dataKost: widget.data, dataKamar: dataKamar)),
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: MyColor.mainBlue,
                                     minimumSize: Size(double.infinity, 0),
@@ -107,7 +107,7 @@ class _KamarKostState extends State<KamarKost> {
                                 child: Text("+ Tambah Penghuni", style: TextStyle(color: Colors.white, fontSize: 15)),
                               )
                             : GestureDetector(
-                                onTap: () => Navigate.navigatorPush(context, DetailPenghuni(dataKost: widget.data, dataKamar: dataKamar)),
+                                onTap: () => Navigate.navigatorPush(context, () => DetailPenghuni(dataKost: widget.data, dataKamar: dataKamar)),
                                 child: Container(
                                   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                                   decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xFFBABABA))),

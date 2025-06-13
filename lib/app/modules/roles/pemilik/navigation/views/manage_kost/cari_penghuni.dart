@@ -21,7 +21,6 @@ class CariPenghuni extends StatefulWidget {
 
 class _CariPenghuniState extends State<CariPenghuni> {
   final searchController = TextEditingController();
-
   List<AllPenghuniModel> filterBySearch = [];
   List<AllPenghuniModel> dataPenghuni = [];
   bool _isLoad = false;
@@ -107,7 +106,14 @@ class _CariPenghuniState extends State<CariPenghuni> {
                                         return GestureDetector(
                                             onTap: () async {
                                               await assignPenghuni(penghuni.id.toString());
-                                              Navigate.navigatorPushAndRemove(context, BuildPemilikNavigation());
+                                              Navigate.pushAndRemoveToHome();
+                                              // if (!mounted) return;
+                                              //
+                                              // // Tunggu frame selesai sebelum navigasi
+                                              // WidgetsBinding.instance.addPostFrameCallback((_) {
+                                              //   if (!mounted) return;
+                                              //   Navigate.pushAndRemoveToHome();
+                                              // });
                                             },
                                             child: ItemSearchPenghuni(data: penghuni));
                                       },
@@ -119,7 +125,14 @@ class _CariPenghuniState extends State<CariPenghuni> {
                                     return GestureDetector(
                                         onTap: () async {
                                           await assignPenghuni(penghuni.id.toString());
-                                          Navigate.navigatorPushAndRemove(context, BuildPemilikNavigation());
+                                          Navigate.pushAndRemoveToHome();
+                                          // if (!mounted) return;
+                                          //
+                                          // // Tunggu frame selesai sebelum navigasi
+                                          // WidgetsBinding.instance.addPostFrameCallback((_) {
+                                          //   if (!mounted) return;
+                                          //   Navigate.pushAndRemoveToHome();
+                                          // });
                                         },
                                         child: ItemSearchPenghuni(data: penghuni));
                                   },

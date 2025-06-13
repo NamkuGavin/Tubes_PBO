@@ -12,7 +12,7 @@ class BuildCardInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Hitung total penghuni aktif
-    int totalPenghuniAktif = data.expand((kost) => kost.dataKamar).where((kamar) => kamar.status.toLowerCase() == "Terisi").length;
+    int totalPenghuniAktif = data.expand((kost) => kost.dataKamar).where((kamar) => kamar.status == "Terisi").length;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

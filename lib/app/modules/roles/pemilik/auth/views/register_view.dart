@@ -104,7 +104,7 @@ class _RegisterViewState extends State<RegisterView> {
                           ElevatedButton(
                               onPressed: () async {
                                 await register();
-                                Navigate.navigatorPushAndRemove(context, BuildPemilikNavigation());
+                                Navigate.navigatorPushAndRemove(context, () => BuildPemilikNavigation());
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: MyColor.mainBlue,

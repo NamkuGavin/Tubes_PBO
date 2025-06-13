@@ -68,7 +68,7 @@ class _DetailPenghuniState extends State<DetailPenghuni> {
                           data: data!,
                           onKosongin: () async {
                             await kosonginKamar();
-                            Navigate.navigatorPushAndRemove(context, BuildPemilikNavigation());
+                            Navigate.navigatorPushAndRemove(context, () => BuildPemilikNavigation());
                           }),
                       BodyDetailPenghuni(data: data!, dataKamar: widget.dataKamar),
                       RiwayatDetailPenghuni(data: data!, dataKost: widget.dataKost),

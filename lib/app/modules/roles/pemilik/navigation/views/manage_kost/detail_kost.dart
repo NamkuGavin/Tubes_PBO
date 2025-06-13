@@ -48,14 +48,14 @@ class _DetailKostPenghuniState extends State<DetailKostPenghuni> {
                       data: widget.data,
                       onDelete: () async {
                         await deleteKost();
-                        Navigate.navigatorPushAndRemove(context, BuildPemilikNavigation());
+                        Navigate.navigatorPushAndRemove(context, () => BuildPemilikNavigation());
                       },
                     ),
                     BodyDetail(data: widget.data),
                     // RiwayatDetail(data: data),
                     ElevatedButton(
                         // onPressed: () {},
-                        onPressed: () => Navigate.navigatorPush(context, KamarKost(data: widget.data)),
+                        onPressed: () => Navigate.navigatorPush(context, () => KamarKost(data: widget.data)),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyColor.mainBlue,
                             minimumSize: Size(double.infinity, 0),

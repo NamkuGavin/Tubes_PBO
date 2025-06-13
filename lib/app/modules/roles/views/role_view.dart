@@ -34,13 +34,13 @@ class RoleView extends StatelessWidget {
               RolesCard(
                 image: ImageAssets.pemilikLogo,
                 text: "Pemilik",
-                onTap: () => Navigate.navigatorPush(context, PemilikLoginView()),
+                onTap: () => Navigate.navigatorPush(context, () => PemilikLoginView()),
               ),
               SizedBox(height: 10),
               RolesCard(
                 image: ImageAssets.penghuniLogo,
                 text: "Penghuni",
-                onTap: () => Navigate.navigatorPush(context, PenghuniLoginView()),
+                onTap: () => Navigate.navigatorPush(context,() =>  PenghuniLoginView()),
               ),
             ],
           ),

@@ -198,4 +198,22 @@ class ApiService {
       throw HttpException('request error code ${res.statusCode}');
     }
   }
+
+  Future<BaseResponseModel> loginPemilik({required String email, required String password}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    final body = {"email": email, "password": password};
+    print("RAW LOGIN PEMILIK: $body");
+    print("URL LOGIN PEMILIK: ${UrlEndpoint.baseUrl}${UrlEndpoint.loginPemilik}");
+    final res = await http.post(Uri.parse("${UrlEndpoint.baseUrl}${UrlEndpoint.loginPemilik}"), headers: headers, body: jsonEncode(body));
+    print("STATUS CODE(LOGIN PEMILIK): ${res.statusCode}");
+    print("RES LOGIN PEMILIK: ${res.body}");
+    if (res.statusCode == 200) {
+      return BaseResponseModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
 }

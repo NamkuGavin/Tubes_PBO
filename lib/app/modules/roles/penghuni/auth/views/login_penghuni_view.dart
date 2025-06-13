@@ -82,7 +82,7 @@ class _PenghuniLoginViewState extends State<PenghuniLoginView> {
                     SizedBox(height: 50),
                     ElevatedButton(
                         onPressed: () =>
-                            Navigate.navigatorPush(context, BuildPenghuniNavigation()),
+                            Navigate.navigatorPush(context, () => BuildPenghuniNavigation()),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyColor.mainBlue,
                             minimumSize: Size(double.infinity, 0),
@@ -100,7 +100,7 @@ class _PenghuniLoginViewState extends State<PenghuniLoginView> {
                           TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () =>
-                                  Navigate.navigatorPush(context, RegisterPenghuniView()),
+                                  Navigate.navigatorPush(context, () => RegisterPenghuniView()),
                             text: "Daftar",
                             style: TextStyle(fontSize: 12, color: MyColor.mainBlue),
                           ),

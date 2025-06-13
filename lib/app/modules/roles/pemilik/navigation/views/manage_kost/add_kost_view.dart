@@ -132,7 +132,7 @@ class _AddKostViewState extends State<AddKostView> {
                       ElevatedButton(
                           onPressed: () async {
                             await createKost();
-                            Navigate.navigatorPushAndRemove(context, BuildPemilikNavigation());
+                            Navigate.navigatorPushAndRemove(context, () => BuildPemilikNavigation());
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: MyColor.mainBlue,

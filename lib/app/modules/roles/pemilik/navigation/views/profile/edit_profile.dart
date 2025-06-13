@@ -70,7 +70,7 @@ class _EditProfileState extends State<EditProfile> {
                     ElevatedButton(
                         onPressed: () async {
                           await editProfile();
-                          Navigate.navigatorPushAndRemove(context, BuildPemilikNavigation());
+                          Navigate.navigatorPushAndRemove(context,() =>  BuildPemilikNavigation());
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyColor.mainBlue,

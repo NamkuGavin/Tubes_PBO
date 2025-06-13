@@ -29,7 +29,7 @@ class RiwayatDetailPenghuni extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
             child: GestureDetector(
               // onTap: () {},
-              onTap: () => Navigate.navigatorPush(context, DetailPembayaran(dataKost: dataKost, dataPembayaran: pembayaran, dataTransaksi: data.dataPenghuni.dataTransaksi)),
+              onTap: () => Navigate.navigatorPush(context, () => DetailPembayaran(dataKost: dataKost, dataPembayaran: pembayaran, dataTransaksi: data.dataPenghuni.dataTransaksi)),
               child: CustomItemTile(
                 icon: SvgPicture.asset(
                   IconAssets.bill,

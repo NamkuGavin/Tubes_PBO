@@ -44,10 +44,7 @@ class _RegisterPenghuniViewState extends State<RegisterPenghuniView> {
                     SizedBox(height: 3),
                     Text(
                       "Masukkan form dibawah ini untuk mendaftar",
-                      style: TextStyle(
-                          fontSize: 12,
-                          color: MyColor.neutral900,
-                          fontWeight: FontWeight.w500),
+                      style: TextStyle(fontSize: 12, color: MyColor.neutral900, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(height: 25),
                     CustomTextFormField(
@@ -85,30 +82,24 @@ class _RegisterPenghuniViewState extends State<RegisterPenghuniView> {
                               _isNotVisiblePass = !_isNotVisiblePass;
                             });
                           },
-                          icon: Icon(_isNotVisiblePass
-                              ? Icons.visibility_off_rounded
-                              : Icons.remove_red_eye_rounded)),
+                          icon: Icon(_isNotVisiblePass ? Icons.visibility_off_rounded : Icons.remove_red_eye_rounded)),
                     ),
                     SizedBox(height: 50),
                     ElevatedButton(
-                        onPressed: () => Navigate.navigatorPush(context, PenghuniFormView()),
+                        onPressed: () => Navigate.navigatorPush(context, () => PenghuniFormView()),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyColor.mainBlue,
                             minimumSize: Size(double.infinity, 0),
                             padding: EdgeInsets.symmetric(vertical: 12),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8)))),
-                        child: Text("Daftar",
-                            style: TextStyle(color: Colors.white, fontSize: 15))),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
+                        child: Text("Daftar", style: TextStyle(color: Colors.white, fontSize: 15))),
                     SizedBox(height: 50),
                     Text.rich(
                       TextSpan(
                         children: [
+                          TextSpan(text: "Sudah punya akun? ", style: TextStyle(fontSize: 12)),
                           TextSpan(
-                              text: "Sudah punya akun? ", style: TextStyle(fontSize: 12)),
-                          TextSpan(
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () => Navigate.navigatorPop(context),
+                            recognizer: TapGestureRecognizer()..onTap = () => Navigate.navigatorPop(context),
                             text: "Masuk",
                             style: TextStyle(fontSize: 12, color: MyColor.mainBlue),
                           ),

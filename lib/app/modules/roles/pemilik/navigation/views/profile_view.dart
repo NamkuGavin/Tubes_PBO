@@ -7,6 +7,7 @@ import 'package:tubes_pbo/app/network/configuration/api_service.dart';
 import '../../../../../common/constant/color_value.dart';
 import '../../../../../model/api/user_model.dart';
 import '../../../../../widgets/card_info/build_card_info.dart';
+import '../../../views/role_view.dart';
 import 'profile/profile_item.dart';
 
 class ProfileView extends StatefulWidget {
@@ -82,7 +83,7 @@ class _ProfileViewState extends State<ProfileView> {
             _button(
                 onPress: () => Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                        builder: (context) => PemilikLoginView(),
+                        builder: (context) => RoleView(),
                       ),
                       (Route<dynamic> route) => false,
                     ),

@@ -88,7 +88,7 @@ class _EditKostState extends State<EditKost> {
                       ElevatedButton(
                           onPressed: () async {
                             await editKost();
-                            Navigate.navigatorReplacement(context, BuildPemilikNavigation());
+                            Navigate.navigatorReplacement(context, () => BuildPemilikNavigation());
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: MyColor.mainBlue,
