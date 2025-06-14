@@ -90,7 +90,7 @@ class DataKamar {
 
 class DataTransaksi {
   int nominal;
-  DateTime tanggalPembayaran;
+  String tanggalPembayaran;
 
   DataTransaksi({
     required this.nominal,
@@ -99,13 +99,12 @@ class DataTransaksi {
 
   factory DataTransaksi.fromJson(Map<String, dynamic> json) => DataTransaksi(
         nominal: json["nominal"],
-        tanggalPembayaran: DateTime.parse(json["tanggalPembayaran"]),
+        tanggalPembayaran: json["tanggalPembayaran"],
       );
 
   Map<String, dynamic> toJson() => {
         "nominal": nominal,
-        "tanggalPembayaran":
-            "${tanggalPembayaran.year.toString().padLeft(4, '0')}-${tanggalPembayaran.month.toString().padLeft(2, '0')}-${tanggalPembayaran.day.toString().padLeft(2, '0')}",
+        "tanggalPembayaran": tanggalPembayaran,
       };
 }
 

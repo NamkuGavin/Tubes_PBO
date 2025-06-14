@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tubes_pbo/app/common/constant/navigate.dart';
+import 'package:tubes_pbo/app/modules/roles/penghuni/navigation/views/penghuni_kost/detail_transaksi.dart';
 import 'package:tubes_pbo/app/network/configuration/api_service.dart';
 
 import '../../../../../common/constant/assets.dart';
@@ -167,19 +168,22 @@ class _PenghuniHomeViewState extends State<PenghuniHomeView> {
                                 shrinkWrap: true,
                                 itemCount: riwayatPembayaran?.length,
                                 itemBuilder: (context, index) {
-                                  final data = riwayatPembayaran?[index];
-                                  return CustomItemTile(
-                                    icon: SvgPicture.asset(
-                                      IconAssets.bill,
-                                      color: Colors.white,
-                                      height: 20,
+                                  final dataRiwayatPembayaran = riwayatPembayaran?[index];
+                                  return GestureDetector(
+                                    onTap: () => Navigate.navigatorPush(context, () => DetailTransaksi(dataKost: data!, data: dataRiwayatPembayaran)),
+                                    child: CustomItemTile(
+                                      icon: SvgPicture.asset(
+                                        IconAssets.bill,
+                                        color: Colors.white,
+                                        height: 20,
+                                      ),
+                                      colorItem: dataRiwayatPembayaran?.status == "Lunas" ? MyColor.mainGreen : MyColor.mainRed,
+                                      name: dataRiwayatPembayaran!.status,
+                                      kost: "",
+                                      currency: dataRiwayatPembayaran.nominalPembayaran,
+                                      date: dataRiwayatPembayaran.tanggalAkhir,
+                                      lunas: dataRiwayatPembayaran.status == "Lunas",
                                     ),
-                                    colorItem: data?.status == "Lunas" ? MyColor.mainGreen : MyColor.mainRed,
-                                    name: data!.status,
-                                    kost: "",
-                                    currency: data.nominalPembayaran,
-                                    date: data.tanggalAkhir,
-                                    lunas: data.status == "Lunas",
                                   );
                                 },
                               )

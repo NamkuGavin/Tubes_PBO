@@ -3,12 +3,11 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../../../common/constant/assets.dart';
 import '../../../../../../../common/constant/color_value.dart';
-import '../../../../../../../model/dummy/kost_model.dart';
-import '../../../../../../../model/dummy/penghuni_model.dart';
+import '../../../../../../../model/api/kost_by_penghuni.dart';
 
 class HeaderDetailTransaksi extends StatelessWidget {
   final RiwayatPembayaran data;
-  final KostModel dataKost;
+  final KostbyPenghuniModel dataKost;
   const HeaderDetailTransaksi({super.key, required this.data, required this.dataKost});
 
   @override
@@ -25,22 +24,17 @@ class HeaderDetailTransaksi extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(dataKost.nama,
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                  Text(dataKost.namaKos.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                   Text(
-                    dataKost.jenis,
-                    style: TextStyle(
-                        fontSize: 15, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
+                    dataKost.tipeKos.toString(),
+                    style: TextStyle(fontSize: 15, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
             ],
           ),
-          Text(data.isLunas ? "LUNAS" : "BELUM LUNAS",
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: data.isLunas ? MyColor.mainGreen : MyColor.mainRed)),
+          Text(data.status == "Lunas" ? "LUNAS" : "BELUM LUNAS",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: data.status == "Lunas" ? MyColor.mainGreen : MyColor.mainRed)),
         ],
       ),
     );

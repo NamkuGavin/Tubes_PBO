@@ -4,7 +4,6 @@ import '../../../../../../common/constant/color_value.dart';
 import '../../../../../../model/api/kost_by_penghuni.dart';
 import 'part_of_detail_penghuni_kost/body_detail_kost_penghuni.dart';
 import 'part_of_detail_penghuni_kost/header_detail_kost_penghuni.dart';
-import 'part_of_detail_penghuni_kost/riwayat_detail_kost_penghuni.dart';
 
 class DetailKost extends StatelessWidget {
   final KostbyPenghuniModel data;

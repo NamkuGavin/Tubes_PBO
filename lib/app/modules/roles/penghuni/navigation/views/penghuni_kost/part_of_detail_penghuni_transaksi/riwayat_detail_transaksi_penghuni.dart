@@ -5,13 +5,11 @@ import 'package:tubes_pbo/app/modules/roles/penghuni/navigation/views/penghuni_k
 import '../../../../../../../common/constant/assets.dart';
 import '../../../../../../../common/constant/color_value.dart';
 import '../../../../../../../common/utils/shared_code.dart';
-import '../../../../../../../model/dummy/kost_model.dart';
-import '../../../../../../../model/dummy/penghuni_model.dart';
+import '../../../../../../../model/api/kost_by_penghuni.dart';
 
 class RiwayatDetailTransaksi extends StatelessWidget {
-  final RiwayatPembayaran data;
-  final KostModel dataKost;
-  const RiwayatDetailTransaksi({super.key, required this.data, required this.dataKost});
+  final KostbyPenghuniModel dataKost;
+  const RiwayatDetailTransaksi({super.key, required this.dataKost});
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +21,17 @@ class RiwayatDetailTransaksi extends StatelessWidget {
           children: [
             Text("Riwayat", style: TextStyle(fontWeight: FontWeight.bold)),
             GestureDetector(
-              onTap: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => AddPembayaranKost())),
-              child: Text("+ Tambah Pembayaran",
-                  style: TextStyle(fontWeight: FontWeight.bold, color: MyColor.mainBlue)),
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AddPembayaranKost())),
+              child: Text("+ Tambah Pembayaran", style: TextStyle(fontWeight: FontWeight.bold, color: MyColor.mainBlue)),
             )
           ],
         ),
         SizedBox(height: 12),
         ListView.builder(
           shrinkWrap: true,
-          itemCount: data.riwayatTransaksi.length,
+          itemCount: dataKost.dataTransaksi?.length,
           itemBuilder: (context, index) {
-            final dataTransaksi = data.riwayatTransaksi[index];
+            final transaksi = dataKost.dataTransaksi?[index];
             return Container(
               padding: EdgeInsets.all(15),
               margin: EdgeInsets.only(bottom: 12),
@@ -48,8 +44,7 @@ class RiwayatDetailTransaksi extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(10),
                     margin: EdgeInsets.only(right: 12),
-                    decoration: BoxDecoration(
-                        color: MyColor.mainGreen, borderRadius: BorderRadius.circular(8)),
+                    decoration: BoxDecoration(color: MyColor.mainGreen, borderRadius: BorderRadius.circular(8)),
                     child: SvgPicture.asset(
                       IconAssets.trendUp,
                       color: Colors.white,
@@ -59,17 +54,10 @@ class RiwayatDetailTransaksi extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("+ ${SharedCode().convertToIdr(dataTransaksi.nominal, 0)}",
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: MyColor.mainGreen)),
+                      Text("+ ${SharedCode().convertToIdr(transaksi?.nominal, 0)}", style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: MyColor.mainGreen)),
                       Text(
-                        dataTransaksi.tanggal,
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Color(0xFF8C8C8C),
-                            fontWeight: FontWeight.w600),
+                        transaksi!.tanggalPembayaran.toString(),
+                        style: TextStyle(fontSize: 13, color: Color(0xFF8C8C8C), fontWeight: FontWeight.w600),
                       ),
                     ],
                   )
