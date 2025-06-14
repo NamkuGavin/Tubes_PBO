@@ -88,7 +88,7 @@ class BodyDetailPenghuni extends StatelessWidget {
           ),
           Divider(color: Color(0xFFBABABA), thickness: 1),
           Padding(
-            padding: const EdgeInsets.fromLTRB(15, 5, 30, 5),
+            padding: const EdgeInsets.fromLTRB(15, 5, 30, 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -108,7 +108,7 @@ class BodyDetailPenghuni extends StatelessWidget {
               ],
             ),
           ),
-          _buildDokumen(),
+          // _buildDokumen(),
         ],
       ),
     );

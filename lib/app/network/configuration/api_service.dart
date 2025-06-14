@@ -9,6 +9,7 @@ import 'package:tubes_pbo/app/model/api/user_model.dart';
 import '../../model/api/base_response_model.dart';
 import '../../model/api/kost_by_penghuni.dart';
 import '../../model/api/kost_model.dart';
+import '../../model/api/user_penghuni_model.dart';
 import 'url_endpoint.dart';
 
 class ApiService {
@@ -286,6 +287,74 @@ class ApiService {
     print("RES GET KOST BY PENGHUNI: ${res.body}");
     if (res.statusCode == 200) {
       return KostbyPenghuniModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<BaseResponseModel> transaksi({required String penghuniId, required int nominal}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    final body = {"tanggalPembayaran": null, "nominal": nominal};
+    print("RAW TRANSAKSI: $body");
+    print("URL TRANSAKSI: ${UrlEndpoint.baseUrl}/transaksi/$penghuniId");
+    final res = await http.post(Uri.parse("${UrlEndpoint.baseUrl}/transaksi/$penghuniId"), headers: headers, body: jsonEncode(body));
+    print("STATUS CODE(TRANSAKSI): ${res.statusCode}");
+    print("RES TRANSAKSI: ${res.body}");
+    if (res.statusCode == 200) {
+      return BaseResponseModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<UserPenghuniModel> getProfilePenghuni({required String namaUser}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    print("URL PROFILE PENGHUNI: ${UrlEndpoint.baseUrl}/penghuni/$namaUser");
+    final res = await http.get(Uri.parse("${UrlEndpoint.baseUrl}/penghuni/$namaUser"), headers: headers);
+    print("STATUS CODE(PROFILE PENGHUNI): ${res.statusCode}");
+    print("RES PROFILE PENGHUNI: ${res.body}");
+    if (res.statusCode == 200) {
+      return UserPenghuniModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future editProfilePenghuni(
+      {required String penghuniId,
+      required String nama,
+      required int usia,
+      required String pekerjaan,
+      required String nomorHp,
+      required String kontakDarurat,
+      required String jenisKendaraan,
+      required String platKendaraan}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    final body = {
+      "nama": nama,
+      "usia": usia,
+      "pekerjaan": pekerjaan,
+      "nomorHp": nomorHp,
+      "kontakDarurat": kontakDarurat,
+      "jenisKendaraan": jenisKendaraan,
+      "platKendaraan": platKendaraan
+    };
+    print("RAW EDIT PROFILE: $body");
+    print("URL EDIT PROFILE PENGHUNI: ${UrlEndpoint.baseUrl}/penghuni/$penghuniId");
+    final res = await http.patch(Uri.parse("${UrlEndpoint.baseUrl}/penghuni/$penghuniId"), headers: headers, body: jsonEncode(body));
+    print("STATUS CODE(EDIT PROFILE PENGHUNI): ${res.statusCode}");
+    print("RES EDIT PROFILE PENGHUNI: ${res.body}");
+    if (res.statusCode == 200) {
+      return "Success";
     } else {
       print(res.statusCode);
       throw HttpException('request error code ${res.statusCode}');
