@@ -7,4 +7,6 @@ class UrlEndpoint {
   static final String deleteKost = "/kos/hapus";
   static final String registerPemilik = "/pemilik/tambah";
   static final String loginPemilik = "/pemilik/login";
+  static final String registerPenghuni = "/penghuni/tambah";
+  static final String loginPenghuni = "/penghuni/login";
 }

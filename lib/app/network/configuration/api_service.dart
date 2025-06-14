@@ -7,6 +7,7 @@ import 'package:tubes_pbo/app/model/api/penghuni_model.dart';
 import 'package:tubes_pbo/app/model/api/user_model.dart';
 
 import '../../model/api/base_response_model.dart';
+import '../../model/api/kost_by_penghuni.dart';
 import '../../model/api/kost_model.dart';
 import 'url_endpoint.dart';
 
@@ -211,6 +212,80 @@ class ApiService {
     print("RES LOGIN PEMILIK: ${res.body}");
     if (res.statusCode == 200) {
       return BaseResponseModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<BaseResponseModel> registerPenghuni(
+      {required String username,
+      required String jenisKelamin,
+      required int usia,
+      required String pekerjaan,
+      required String noHp,
+      required String noDarurat,
+      required String jenisKendaraan,
+      required String plat,
+      required String email,
+      required String pass}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    final body = {
+      "nama": username,
+      "jenisKelamin": jenisKelamin,
+      "usia": usia,
+      "pekerjaan": pekerjaan,
+      "nomorHp": noHp,
+      "kontakDarurat": noDarurat,
+      "jenisKendaraan": jenisKendaraan,
+      "platKendaraan": plat,
+      "email": email,
+      "password": pass,
+      "role": "penghuni"
+    };
+    print("RAW REGISTER PENGHUNI: $body");
+    print("URL REGISTER PENGHUNI: ${UrlEndpoint.baseUrl}${UrlEndpoint.registerPenghuni}");
+    final res = await http.post(Uri.parse("${UrlEndpoint.baseUrl}${UrlEndpoint.registerPenghuni}"), headers: headers, body: jsonEncode(body));
+    print("STATUS CODE(REGISTER PENGHUNI): ${res.statusCode}");
+    print("RES REGISTER PENGHUNI: ${res.body}");
+    if (res.statusCode == 200) {
+      return BaseResponseModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<BaseResponseModel> loginPenghuni({required String email, required String password}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    final body = {"email": email, "password": password};
+    print("RAW LOGIN PENGHUNI: $body");
+    print("URL LOGIN PENGHUNI: ${UrlEndpoint.baseUrl}${UrlEndpoint.loginPenghuni}");
+    final res = await http.post(Uri.parse("${UrlEndpoint.baseUrl}${UrlEndpoint.loginPenghuni}"), headers: headers, body: jsonEncode(body));
+    print("STATUS CODE(LOGIN PENGHUNI): ${res.statusCode}");
+    print("RES LOGIN PENGHUNI: ${res.body}");
+    if (res.statusCode == 200) {
+      return BaseResponseModel.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.statusCode);
+      throw HttpException('request error code ${res.statusCode}');
+    }
+  }
+
+  Future<KostbyPenghuniModel> getDataKostbyPenghuni({required String username}) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+    print("URL GET KOST BY PENGHUNI: ${UrlEndpoint.baseUrl}/penghuni/$username/view");
+    final res = await http.get(Uri.parse("${UrlEndpoint.baseUrl}/penghuni/$username/view"), headers: headers);
+    print("STATUS CODE(GET KOST BY PENGHUNI): ${res.statusCode}");
+    print("RES GET KOST BY PENGHUNI: ${res.body}");
+    if (res.statusCode == 200) {
+      return KostbyPenghuniModel.fromJson(jsonDecode(res.body));
     } else {
       print(res.statusCode);
       throw HttpException('request error code ${res.statusCode}');

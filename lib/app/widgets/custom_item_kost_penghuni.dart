@@ -14,8 +14,8 @@ class CustomItemKostPenghuni extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DetailKost(data: dataKost))),
+      // onTap: () => Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => DetailKost(data: dataKost))),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
         decoration: BoxDecoration(

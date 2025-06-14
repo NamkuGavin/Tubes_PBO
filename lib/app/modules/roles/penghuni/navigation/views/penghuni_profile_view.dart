@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tubes_pbo/app/modules/roles/pemilik/auth/views/login_view.dart';
 import 'package:tubes_pbo/app/modules/roles/pemilik/navigation/views/profile/edit_profile.dart';
 import 'package:tubes_pbo/app/modules/roles/penghuni/navigation/views/penghuni_profile/penghuni_edit_profile.dart';
+import 'package:tubes_pbo/app/modules/roles/views/role_view.dart';
 
 import '../../../../../common/constant/color_value.dart';
 import '../../../../../widgets/card_info/build_card_info.dart';
@@ -59,7 +60,7 @@ class _PenghuniProfileViewState extends State<PenghuniProfileView> {
             _button(
                 onPress: () => Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                        builder: (context) => PemilikLoginView(),
+                        builder: (context) => RoleView(),
                       ),
                       (Route<dynamic> route) => false,
                     ),

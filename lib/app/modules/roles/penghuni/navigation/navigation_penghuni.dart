@@ -20,7 +20,7 @@ class _BuildPenghuniNavigationState extends State<BuildPenghuniNavigation> {
 
   final _tabs = [
     const PenghuniHomeView(),
-    const PenghuniKostView(),
+    // const PenghuniKostView(),
     const PenghuniProfileView(),
   ];
 
@@ -73,12 +73,12 @@ class _BuildPenghuniNavigationState extends State<BuildPenghuniNavigation> {
                   SvgPicture.asset(IconAssets.home, height: 25, color: MyColor.mainBlue),
               label: 'Beranda',
             ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(IconAssets.kost2, height: 30),
-              activeIcon:
-                  SvgPicture.asset(IconAssets.kost2, height: 30, color: MyColor.mainBlue),
-              label: 'Kost',
-            ),
+            // BottomNavigationBarItem(
+            //   icon: SvgPicture.asset(IconAssets.kost2, height: 30),
+            //   activeIcon:
+            //       SvgPicture.asset(IconAssets.kost2, height: 30, color: MyColor.mainBlue),
+            //   label: 'Kost',
+            // ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(IconAssets.person, height: 30),
               activeIcon:

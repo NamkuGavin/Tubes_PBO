@@ -86,7 +86,11 @@ class _RegisterPenghuniViewState extends State<RegisterPenghuniView> {
                     ),
                     SizedBox(height: 50),
                     ElevatedButton(
-                        onPressed: () => Navigate.navigatorPush(context, () => PenghuniFormView()),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            Navigate.navigatorPush(context, () => PenghuniFormView(username: _usernameController.text, email: _emailController.text, pass: _passController.text));
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyColor.mainBlue,
                             minimumSize: Size(double.infinity, 0),
